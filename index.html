@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EMT Prep Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="phone-app">
+
+    <header class="top-bar">
+      <div>
+        <p class="eyebrow">EMT Study App</p>
+        <h1>EMT Prep Hub</h1>
+      </div>
+      <div class="streak-badge">🔥 0</div>
+    </header>
+
+    <main>
+      <section id="home-screen" class="screen active">
+        <div class="hero-card">
+          <h2>Study Chapters 1–10</h2>
+          <p>Practice EMT questions, review missed answers, and build confidence before class.</p>
+          <div class="stats-grid">
+  <div class="stat-card">
+    <h3 id="total-answered">0</h3>
+    <p>Answered</p>
+  </div>
+
+  <div class="stat-card">
+    <h3 id="accuracy-rate">0%</h3>
+    <p>Accuracy</p>
+  </div>
+
+  <div class="stat-card">
+    <h3 id="missed-count">0</h3>
+    <p>Missed</p>
+  </div>
+</div>
+          <div class="quiz-options">
+  <button class="primary-btn" onclick="startQuickQuiz(10)">10 Questions</button>
+  <button class="secondary-btn" onclick="startQuickQuiz(25)">25 Questions</button>
+  <button class="secondary-btn" onclick="startQuickQuiz(50)">50 Questions</button>
+</div>
+        </div>
+
+        <h3 class="section-title">Chapters</h3>
+
+        <div class="chapter-list" id="chapter-list"></div>
+      </section>
+
+      <section id="quiz-screen" class="screen">
+        <div class="quiz-top">
+          <button class="icon-btn" onclick="goHome()">←</button>
+          <p id="quiz-progress">Question 1 of 10</p>
+        </div>
+
+        <div class="progress-bar">
+          <div id="progress-fill"></div>
+        </div>
+
+        <div class="question-card">
+          <p id="question-topic">Chapter Topic</p>
+          <h2 id="question-text">Question text goes here</h2>
+        </div>
+
+        <div id="answer-options" class="answer-list"></div>
+
+        <div id="feedback-box" class="feedback hidden">
+          <h3 id="feedback-title"></h3>
+          <p id="feedback-text"></p>
+          <button class="primary-btn" onclick="nextQuestion()">Next</button>
+        </div>
+      </section>
+
+      <section id="results-screen" class="screen">
+        <div class="result-card">
+          <h2>Quiz Complete</h2>
+          <p id="result-score"></p>
+          <p id="result-message"></p>
+
+          <button class="primary-btn" onclick="showReview()">Review Answers</button>
+<button class="secondary-btn" onclick="restartQuiz()">Try Again</button>
+<button class="secondary-btn" onclick="goHome()">Back Home</button>
+        </div>
+      </section>
+
+      <section id="flashcards-screen" class="screen">
+  <div class="flashcard-top">
+    <h2>Flashcards</h2>
+    <select id="flashcard-chapter-select" onchange="loadFlashcards()">
+      <option value="all">All Chapters</option>
+      <option value="1">Chapter 1</option>
+      <option value="2">Chapter 2</option>
+      <option value="3">Chapter 3</option>
+      <option value="4">Chapter 4</option>
+      <option value="5">Chapter 5</option>
+      <option value="6">Chapter 6</option>
+      <option value="7">Chapter 7</option>
+      <option value="8">Chapter 8</option>
+      <option value="9">Chapter 9</option>
+      <option value="10">Chapter 10</option>
+    </select>
+  </div>
+
+  <p class="tap-note">Tap the card to flip it.</p>
+
+  <div id="flashcard" class="flashcard" onclick="flipFlashcard()">
+    <p id="flashcard-label">Term</p>
+    <h2 id="flashcard-text">Loading...</h2>
+  </div>
+
+  <div class="flashcard-actions">
+    <button class="secondary-btn" onclick="previousFlashcard()">Previous</button>
+    <button class="primary-btn" onclick="nextFlashcard()">Next</button>
+  </div>
+</section>
+<section id="review-screen" class="screen">
+  <div class="review-top">
+    <button class="icon-btn" onclick="showScreen('results-screen')">←</button>
+    <h2>Review Answers</h2>
+  </div>
+
+  <div id="review-list" class="review-list"></div>
+</section>
+      <section id="missed-screen" class="screen">
+        <div class="empty-card">
+          <h2>Missed Questions</h2>
+          <p>Questions you miss will be saved here later.</p>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <button onclick="showScreen('home-screen')">🏠<span>Home</span></button>
+      <button onclick="showScreen('quiz-screen')">📝<span>Quiz</span></button>
+      <button onclick="showScreen('flashcards-screen')">📚<span>Cards</span></button>
+      <button onclick="showScreen('missed-screen')">⭐<span>Missed</span></button>
+    </nav>
+
+  </div>
+
+  <script src="data/questions.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
