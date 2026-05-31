@@ -1,3 +1,17 @@
+import { db } from "./firebase-config.js";
+import { chapters, questionBank, flashcards } from "./data/questions.js";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  serverTimestamp,
+  setDoc
+} from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+
 let currentQuestions = [];
 let currentIndex = 0;
 let score = 0;
@@ -26,18 +40,6 @@ let currentStreak = username
 let leaderboard = JSON.parse(localStorage.getItem("emtLeaderboard")) || [];
 
 const chapterList = document.getElementById("chapter-list");
-const firebaseConfigReady = Boolean(
-  globalThis.firebase &&
-  globalThis.firebaseConfig &&
-  globalThis.firebaseConfig.apiKey &&
-  globalThis.firebaseConfig.apiKey !== "YOUR_API_KEY"
-);
-let firestoreDb = null;
-
-if (firebaseConfigReady) {
-  firebase.initializeApp(globalThis.firebaseConfig);
-  firestoreDb = firebase.firestore();
-}
 
 function setupUsername() {
   const modal = document.getElementById("username-modal");
@@ -728,21 +730,17 @@ async function updateLeaderboard() {
   localStorage.setItem("emtLeaderboard", JSON.stringify(leaderboard));
   loadRanking();
 
-  if (!firestoreDb) return;
-
   try {
-    const leaderboardRef = firestoreDb
-      .collection("leaderboard")
-      .doc(getLeaderboardId(username));
-    const snapshot = await leaderboardRef.get();
-    const savedBestStreak = snapshot.exists ? Number(snapshot.data().bestStreak) || 0 : 0;
+    const leaderboardRef = doc(db, "leaderboard", getLeaderboardId(username));
+    const snapshot = await getDoc(leaderboardRef);
+    const savedBestStreak = snapshot.exists() ? Number(snapshot.data().bestStreak) || 0 : 0;
 
     if (currentStreak > savedBestStreak) {
-      await leaderboardRef.set({
+      await setDoc(leaderboardRef, {
         username,
         usernameLower: username.toLowerCase(),
         bestStreak: currentStreak,
-        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        updatedAt: serverTimestamp()
       }, { merge: true });
     }
 
@@ -756,27 +754,26 @@ async function loadRanking() {
   const rankingList = document.getElementById("ranking-list");
   if (!rankingList) return;
 
-  if (firestoreDb) {
-    try {
-      const snapshot = await firestoreDb
-        .collection("leaderboard")
-        .orderBy("bestStreak", "desc")
-        .limit(5)
-        .get();
+  try {
+    const leaderboardQuery = query(
+      collection(db, "leaderboard"),
+      orderBy("bestStreak", "desc"),
+      limit(5)
+    );
+    const snapshot = await getDocs(leaderboardQuery);
 
-      leaderboard = snapshot.docs.map((doc) => {
-        const data = doc.data();
+    leaderboard = snapshot.docs.map((snapshotDoc) => {
+      const data = snapshotDoc.data();
 
-        return {
-          username: data.username,
-          bestStreak: Number(data.bestStreak) || 0
-        };
-      });
+      return {
+        username: data.username,
+        bestStreak: Number(data.bestStreak) || 0
+      };
+    });
 
-      localStorage.setItem("emtLeaderboard", JSON.stringify(leaderboard));
-    } catch (error) {
-      console.warn("Could not load Firestore leaderboard. Showing local scores.", error);
-    }
+    localStorage.setItem("emtLeaderboard", JSON.stringify(leaderboard));
+  } catch (error) {
+    console.warn("Could not load Firestore leaderboard. Showing local scores.", error);
   }
 
   if (leaderboard.length === 0) {
@@ -806,6 +803,20 @@ async function loadRanking() {
 function getLeaderboardId(name) {
   return encodeURIComponent(name.trim().toLowerCase());
 }
+
+Object.assign(window, {
+  clearMissedQuestions,
+  flipFlashcard,
+  goHome,
+  loadFlashcards,
+  nextFlashcard,
+  nextQuestion,
+  previousFlashcard,
+  restartQuiz,
+  showReview,
+  showScreen,
+  startQuickQuiz
+});
 
 setupUsername();
 loadChapters();

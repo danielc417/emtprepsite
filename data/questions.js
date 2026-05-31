@@ -1450,3 +1450,5 @@ const flashcards = [
   { chapter: 10, term: "Nasal Cannula", definition: "Low-flow oxygen device placed in the nostrils." },
   { chapter: 10, term: "Pulse Oximetry", definition: "Tool that estimates oxygen saturation in the blood." }
 ];
+
+export { chapters, questionBank, flashcards };
