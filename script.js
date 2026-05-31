@@ -26,6 +26,18 @@ let currentStreak = username
 let leaderboard = JSON.parse(localStorage.getItem("emtLeaderboard")) || [];
 
 const chapterList = document.getElementById("chapter-list");
+const firebaseConfigReady = Boolean(
+  globalThis.firebase &&
+  globalThis.firebaseConfig &&
+  globalThis.firebaseConfig.apiKey &&
+  globalThis.firebaseConfig.apiKey !== "YOUR_API_KEY"
+);
+let firestoreDb = null;
+
+if (firebaseConfigReady) {
+  firebase.initializeApp(globalThis.firebaseConfig);
+  firestoreDb = firebase.firestore();
+}
 
 function setupUsername() {
   const modal = document.getElementById("username-modal");
@@ -692,7 +704,7 @@ function updateStreak() {
   streakBadge.textContent = `🔥 ${currentStreak}`;
 }
 
-function updateLeaderboard() {
+async function updateLeaderboard() {
   if (!username) return;
 
   const existingEntry = leaderboard.find((entry) => {
@@ -715,11 +727,57 @@ function updateLeaderboard() {
 
   localStorage.setItem("emtLeaderboard", JSON.stringify(leaderboard));
   loadRanking();
+
+  if (!firestoreDb) return;
+
+  try {
+    const leaderboardRef = firestoreDb
+      .collection("leaderboard")
+      .doc(getLeaderboardId(username));
+    const snapshot = await leaderboardRef.get();
+    const savedBestStreak = snapshot.exists ? Number(snapshot.data().bestStreak) || 0 : 0;
+
+    if (currentStreak > savedBestStreak) {
+      await leaderboardRef.set({
+        username,
+        usernameLower: username.toLowerCase(),
+        bestStreak: currentStreak,
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+      }, { merge: true });
+    }
+
+    await loadRanking();
+  } catch (error) {
+    console.warn("Could not sync leaderboard with Firestore.", error);
+  }
 }
 
-function loadRanking() {
+async function loadRanking() {
   const rankingList = document.getElementById("ranking-list");
   if (!rankingList) return;
+
+  if (firestoreDb) {
+    try {
+      const snapshot = await firestoreDb
+        .collection("leaderboard")
+        .orderBy("bestStreak", "desc")
+        .limit(5)
+        .get();
+
+      leaderboard = snapshot.docs.map((doc) => {
+        const data = doc.data();
+
+        return {
+          username: data.username,
+          bestStreak: Number(data.bestStreak) || 0
+        };
+      });
+
+      localStorage.setItem("emtLeaderboard", JSON.stringify(leaderboard));
+    } catch (error) {
+      console.warn("Could not load Firestore leaderboard. Showing local scores.", error);
+    }
+  }
 
   if (leaderboard.length === 0) {
     rankingList.innerHTML = `
@@ -743,6 +801,10 @@ function loadRanking() {
       </div>
     `;
   }).join("");
+}
+
+function getLeaderboardId(name) {
+  return encodeURIComponent(name.trim().toLowerCase());
 }
 
 setupUsername();
