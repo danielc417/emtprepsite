@@ -440,13 +440,14 @@ h1 {
 
 .ranking-card {
   display: grid;
-  grid-template-columns: 46px 40px 1fr auto;
+  grid-template-columns: 38px 34px minmax(0, 1fr) auto;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   background: #1e293b;
   border: 1px solid #334155;
   border-radius: 18px;
-  padding: 14px;
+  padding: 12px 10px;
+  overflow: hidden;
 }
 
 .ranking-card > div:nth-child(3) {
@@ -456,42 +457,43 @@ h1 {
 .ranking-place {
   display: grid;
   place-items: center;
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   border-radius: 999px;
   background: #020617;
   color: #38bdf8;
+  font-size: 13px;
   font-weight: 900;
 }
 
 .ranking-gold {
   background: #fef3c7;
   color: #92400e;
-  font-size: 20px;
+  font-size: 17px;
 }
 
 .ranking-silver {
   background: #e5e7eb;
   color: #374151;
-  font-size: 20px;
+  font-size: 17px;
 }
 
 .ranking-bronze {
   background: #fed7aa;
   color: #9a3412;
-  font-size: 20px;
+  font-size: 17px;
 }
 
 .ranking-avatar {
   display: inline-grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   border: 2px solid #38bdf8;
   border-radius: 999px;
   background: #020617;
   color: #f8fafc;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 900;
   background-size: cover;
   background-position: center;
@@ -503,7 +505,7 @@ h1 {
 
 .ranking-name {
   margin: 0;
-  font-size: 17px;
+  font-size: 14px;
   font-weight: 800;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -513,54 +515,52 @@ h1 {
 .ranking-label {
   margin: 3px 0 0;
   color: #94a3b8;
-  font-size: 13px;
+  font-size: 11px;
 }
 
 .ranking-streak {
   color: #f8fafc;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 900;
+  min-width: 1.5em;
+  text-align: right;
 }
 
-@media (max-width: 390px) {
-  .screen {
-    padding-inline: 12px;
-  }
-
+@media (max-width: 480px) {
   .ranking-card {
-    grid-template-columns: 34px 32px minmax(0, 1fr) auto;
-    gap: 8px;
-    padding: 11px;
+    grid-template-columns: 30px 30px minmax(0, 1fr) auto;
+    gap: 7px;
+    padding: 10px 8px;
   }
 
   .ranking-place {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     font-size: 12px;
   }
 
   .ranking-gold,
   .ranking-silver,
   .ranking-bronze {
-    font-size: 17px;
+    font-size: 15px;
   }
 
   .ranking-avatar {
-    width: 32px;
-    height: 32px;
-    font-size: 11px;
+    width: 30px;
+    height: 30px;
+    font-size: 10px;
   }
 
   .ranking-name {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .ranking-label {
-    font-size: 11px;
+    font-size: 10px;
   }
 
   .ranking-streak {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
