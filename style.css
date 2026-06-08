@@ -449,6 +449,10 @@ h1 {
   padding: 14px;
 }
 
+.ranking-card > div:nth-child(3) {
+  min-width: 0;
+}
+
 .ranking-place {
   display: grid;
   place-items: center;
@@ -501,6 +505,9 @@ h1 {
   margin: 0;
   font-size: 17px;
   font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .ranking-label {
@@ -513,6 +520,48 @@ h1 {
   color: #f8fafc;
   font-size: 18px;
   font-weight: 900;
+}
+
+@media (max-width: 390px) {
+  .screen {
+    padding-inline: 12px;
+  }
+
+  .ranking-card {
+    grid-template-columns: 34px 32px minmax(0, 1fr) auto;
+    gap: 8px;
+    padding: 11px;
+  }
+
+  .ranking-place {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .ranking-gold,
+  .ranking-silver,
+  .ranking-bronze {
+    font-size: 17px;
+  }
+
+  .ranking-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 11px;
+  }
+
+  .ranking-name {
+    font-size: 14px;
+  }
+
+  .ranking-label {
+    font-size: 11px;
+  }
+
+  .ranking-streak {
+    font-size: 16px;
+  }
 }
 
 .hidden {
