@@ -1,5 +1,12 @@
-import { db } from "./firebase-config.js";
-import { chapters, questionBank, flashcards } from "./data/questions.js";
+import { db } from "./firebase-config.js?v=6";
+import {
+  chapters,
+  questionBank,
+  flashcards,
+  medicalTerminologyQuestions,
+  medicalTerminologyFlashcards,
+  situationalScenarios
+} from "./data/questions.js?v=6";
 import {
   collection,
   doc,
@@ -26,6 +33,20 @@ let lastQuizOrders = {};
 let lastAnswerOrders = {};
 
 let quizReview = [];
+let currentScenarioQuestions = [];
+let currentScenarioIndex = 0;
+let scenarioScore = 0;
+let scenarioReview = [];
+let currentScenarioFilter = "All Mixed";
+let scenarioMissedQuestions = JSON.parse(localStorage.getItem("emtScenarioMissedQuestions")) || [];
+let scenarioScoreHistory = JSON.parse(localStorage.getItem("emtScenarioScoreHistory")) || [];
+let currentTerminologyQuestions = [];
+let currentTerminologyIndex = 0;
+let terminologyScore = 0;
+let terminologyReview = [];
+let currentTerminologyCategory = "All Categories";
+let terminologyMissedQuestions = JSON.parse(localStorage.getItem("emtTerminologyMissedQuestions")) || [];
+let terminologyScoreHistory = JSON.parse(localStorage.getItem("emtTerminologyScoreHistory")) || [];
 
 let stats = JSON.parse(localStorage.getItem("emtStats")) || {
   answered: 0,
@@ -47,6 +68,46 @@ let weeklyCorrectCount = 0;
 let weeklyRankingUnsubscribe = null;
 
 const chapterList = document.getElementById("chapter-list");
+const scenarioFilters = [
+  { label: "All Mixed", type: "all", value: "all" },
+  { label: "Chapter 6", type: "chapter", value: "Chapter 6" },
+  { label: "Chapter 9", type: "chapter", value: "Chapter 9" },
+  { label: "Chapter 10", type: "chapter", value: "Chapter 10" },
+  { label: "Chapter 12", type: "chapter", value: "Chapter 12" },
+  { label: "Chapter 15", type: "chapter", value: "Chapter 15" },
+  { label: "Chapter 16", type: "chapter", value: "Chapter 16" },
+  { label: "Anatomy/Physiology", type: "category", value: "Anatomy/Physiology" },
+  { label: "Scene Size-Up", type: "category", value: "Scene Size-Up" },
+  { label: "Airway", type: "category", value: "Airway" },
+  { label: "Breathing", type: "category", value: "Breathing" },
+  { label: "Circulation", type: "category", value: "Circulation" },
+  { label: "Shock", type: "category", value: "Shock" },
+  { label: "Cardiac", type: "category", value: "Cardiac Emergency" },
+  { label: "Respiratory", type: "category", value: "Respiratory Emergency" },
+  { label: "Primary Assessment", type: "category", value: "Primary Assessment" },
+  { label: "Assessment", type: "categorySet", values: ["Assessment", "Primary Assessment"] },
+  { label: "Medication Decision", type: "category", value: "Medication Decision" },
+  { label: "Reassessment", type: "category", value: "Reassessment" },
+  { label: "Transport Priority", type: "category", value: "Transport Priority" },
+  { label: "Mixed Situational Scenarios", type: "chapter", value: "Mixed Situational Scenarios" }
+];
+const terminologyCategories = [
+  "All Categories",
+  "Word Roots",
+  "Prefixes",
+  "Suffixes",
+  "Combining Forms",
+  "Directional Terms",
+  "Position Terms",
+  "Movement Terms",
+  "Abbreviations",
+  "Acronyms",
+  "Documentation Terms",
+  "Respiratory Terms",
+  "Cardiovascular Terms",
+  "Shock/Perfusion Terms",
+  "Assessment Terms"
+];
 const avatarOptions = [
   { path: "assets/avatars/star-of-life.svg", label: "Star of Life" },
   { path: "assets/avatars/med-bag.svg", label: "Medical Bag" },
@@ -446,6 +507,28 @@ function loadChapters() {
 
     chapterList.appendChild(card);
   });
+
+  const scenarioCard = document.createElement("div");
+  scenarioCard.className = "chapter-card scenario-chapter-card";
+  scenarioCard.onclick = () => startScenarioQuiz();
+  scenarioCard.innerHTML = `
+    <p>Chapters 6, 9, 10, 12, 15, 16 • 56 scenarios</p>
+    <h3>Situational Scenarios</h3>
+    <p>Real-call practice across airway, breathing, circulation, shock, assessment, respiratory, and cardiac emergencies.</p>
+  `;
+
+  chapterList.appendChild(scenarioCard);
+
+  const terminologyCard = document.createElement("div");
+  terminologyCard.className = "chapter-card";
+  terminologyCard.onclick = showTerminologyMenu;
+  terminologyCard.innerHTML = `
+    <p>Master Tool • 75 questions</p>
+    <h3>Medical Terminology</h3>
+    <p>Roots, prefixes, suffixes, abbreviations, and positions.</p>
+  `;
+
+  chapterList.appendChild(terminologyCard);
 }
 
 function showScreen(screenId) {
@@ -751,6 +834,7 @@ function showResults() {
   showScreen("results-screen");
 
   const percent = Math.round((score / currentQuestions.length) * 100);
+  const missed = quizReview.filter((item) => !item.isCorrect);
 
   document.getElementById("result-score").textContent =
     `${score} out of ${currentQuestions.length} correct (${percent}%)`;
@@ -766,6 +850,40 @@ function showResults() {
   }
 
   document.getElementById("result-message").textContent = message;
+  renderResultMissedSummary(missed);
+}
+
+function renderResultMissedSummary(missed) {
+  const resultCard = document.querySelector("#results-screen .result-card");
+  if (!resultCard) return;
+
+  let summary = document.getElementById("result-missed-summary");
+  if (!summary) {
+    summary = document.createElement("div");
+    summary.id = "result-missed-summary";
+    summary.className = "result-missed-summary";
+    document.getElementById("result-message").after(summary);
+  }
+
+  if (missed.length === 0) {
+    summary.innerHTML = `
+      <h3>No missed questions</h3>
+      <p>You got every question right on this attempt.</p>
+    `;
+    return;
+  }
+
+  summary.innerHTML = `
+    <h3>Missed Questions</h3>
+    <div class="result-missed-list">
+      ${missed.map((item) => `
+        <div class="result-missed-item">
+          <p>${escapeHtml(item.question)}</p>
+          <span>${escapeHtml(item.correctAnswer)}</span>
+        </div>
+      `).join("")}
+    </div>
+  `;
 }
 
 function restartQuiz() {
@@ -778,6 +896,464 @@ function restartQuiz() {
 
 function goHome() {
   showScreen("home-screen");
+}
+
+function showScenarioMenu() {
+  startScenarioQuiz();
+}
+
+function getScenarioFilter(label) {
+  return scenarioFilters.find((filter) => filter.label === label) || scenarioFilters[0];
+}
+
+function getScenariosForFilter(filter) {
+  if (filter.type === "all") {
+    return situationalScenarios;
+  }
+
+  if (filter.type === "categorySet") {
+    return situationalScenarios.filter((scenario) => {
+      return filter.values.includes(scenario.category);
+    });
+  }
+
+  return situationalScenarios.filter((scenario) => {
+    return scenario[filter.type] === filter.value;
+  });
+}
+
+function startScenarioQuiz(filterLabel = "All Mixed") {
+  const filter = getScenarioFilter(filterLabel);
+  const scenarioSet = getScenariosForFilter(filter);
+
+  if (scenarioSet.length === 0) return;
+
+  currentScenarioFilter = filter.label;
+  currentScenarioQuestions = shuffleArray(scenarioSet);
+  currentScenarioIndex = 0;
+  scenarioScore = 0;
+  scenarioReview = [];
+  showScreen("scenario-quiz-screen");
+  showScenarioQuestion();
+}
+
+function showScenarioQuestion() {
+  const scenario = currentScenarioQuestions[currentScenarioIndex];
+  const answerOptions = document.getElementById("scenario-answer-options");
+  if (!scenario || !answerOptions) return;
+
+  document.getElementById("scenario-progress").textContent =
+    `Scenario ${currentScenarioIndex + 1} of ${currentScenarioQuestions.length}`;
+  document.getElementById("scenario-progress-fill").style.width =
+    `${((currentScenarioIndex + 1) / currentScenarioQuestions.length) * 100}%`;
+  document.getElementById("scenario-meta").textContent =
+    `${scenario.chapter} • ${scenario.category}`;
+  document.getElementById("scenario-text").textContent = scenario.scenario;
+  document.getElementById("scenario-question-text").textContent = scenario.question;
+  document.getElementById("scenario-feedback-box").classList.add("hidden");
+
+  answerOptions.innerHTML = "";
+  scenario.options.forEach((option) => {
+    const button = document.createElement("button");
+    button.className = "answer-btn";
+    button.textContent = option;
+    button.onclick = () => selectScenarioAnswer(option);
+    answerOptions.appendChild(button);
+  });
+}
+
+function selectScenarioAnswer(selectedAnswer) {
+  const scenario = currentScenarioQuestions[currentScenarioIndex];
+  const buttons = document.querySelectorAll("#scenario-answer-options .answer-btn");
+  const isCorrect = selectedAnswer === scenario.answer;
+
+  scenarioReview.push({
+    ...scenario,
+    selectedAnswer,
+    isCorrect
+  });
+
+  if (isCorrect) {
+    scenarioScore++;
+  } else {
+    saveMissedScenario({
+      ...scenario,
+      selectedAnswer
+    });
+  }
+
+  buttons.forEach((button) => {
+    button.disabled = true;
+    if (button.textContent === scenario.answer) {
+      button.classList.add("correct");
+    } else if (button.textContent === selectedAnswer) {
+      button.classList.add("wrong");
+    }
+  });
+
+  document.getElementById("scenario-feedback-title").textContent = isCorrect ? "Correct" : "Not quite";
+  document.getElementById("scenario-feedback-text").textContent = scenario.explanation;
+  document.getElementById("scenario-learning-point").innerHTML =
+    `<strong>Learning point:</strong> ${escapeHtml(scenario.learningPoint)}`;
+  document.getElementById("scenario-feedback-box").classList.remove("hidden");
+}
+
+function saveMissedScenario(scenario) {
+  const existingIndex = scenarioMissedQuestions.findIndex((item) => item.id === scenario.id);
+
+  if (existingIndex >= 0) {
+    scenarioMissedQuestions[existingIndex] = scenario;
+  } else {
+    scenarioMissedQuestions.push(scenario);
+  }
+
+  localStorage.setItem("emtScenarioMissedQuestions", JSON.stringify(scenarioMissedQuestions));
+}
+
+function nextScenarioQuestion() {
+  currentScenarioIndex++;
+
+  if (currentScenarioIndex < currentScenarioQuestions.length) {
+    showScenarioQuestion();
+  } else {
+    showScenarioResults();
+  }
+}
+
+function showScenarioResults() {
+  const percent = Math.round((scenarioScore / currentScenarioQuestions.length) * 100);
+  const missed = scenarioReview.filter((item) => !item.isCorrect);
+  const weakCategories = getWeakScenarioGroups(missed, "category");
+  const weakChapters = getWeakScenarioGroups(missed, "chapter");
+
+  scenarioScoreHistory.push({
+    filter: currentScenarioFilter,
+    score: scenarioScore,
+    total: currentScenarioQuestions.length,
+    percent,
+    missedCount: missed.length,
+    weakCategories,
+    weakChapters,
+    completedAt: new Date().toISOString()
+  });
+  scenarioScoreHistory = scenarioScoreHistory.slice(-25);
+  localStorage.setItem("emtScenarioScoreHistory", JSON.stringify(scenarioScoreHistory));
+
+  document.getElementById("scenario-result-score").textContent =
+    `${scenarioScore} out of ${currentScenarioQuestions.length} correct (${percent}%)`;
+  document.getElementById("scenario-result-message").textContent =
+    missed.length === 0
+      ? "Clean run. Your scenario decision-making looked sharp."
+      : "Review the missed calls, then retry the weakest area.";
+
+  renderScenarioWeakSummary(missed, weakCategories, weakChapters);
+  showScreen("scenario-results-screen");
+}
+
+function getWeakScenarioGroups(items, key) {
+  const counts = new Map();
+
+  items.forEach((item) => {
+    counts.set(item[key], (counts.get(item[key]) || 0) + 1);
+  });
+
+  return Array.from(counts.entries())
+    .sort((first, second) => second[1] - first[1])
+    .map(([label, count]) => ({ label, count }));
+}
+
+function renderScenarioWeakSummary(missed, weakCategories, weakChapters) {
+  const summary = document.getElementById("scenario-weak-summary");
+  if (!summary) return;
+
+  if (missed.length === 0) {
+    summary.innerHTML = `
+      <h3>No weak categories</h3>
+      <p>You did not miss any scenario questions on this attempt.</p>
+    `;
+    return;
+  }
+
+  summary.innerHTML = `
+    <h3>Missed Questions: ${missed.length}</h3>
+    <p><strong>Weak categories:</strong> ${escapeHtml(formatWeakScenarioGroups(weakCategories))}</p>
+    <p><strong>Weak chapters:</strong> ${escapeHtml(formatWeakScenarioGroups(weakChapters))}</p>
+    <div class="result-missed-list">
+      ${missed.map((item) => `
+        <div class="result-missed-item">
+          <p>${escapeHtml(item.question)}</p>
+          <span>${escapeHtml(item.chapter)} • ${escapeHtml(item.category)}</span>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function formatWeakScenarioGroups(groups) {
+  if (groups.length === 0) return "None";
+
+  return groups
+    .slice(0, 3)
+    .map((group) => `${group.label} (${group.count})`)
+    .join(", ");
+}
+
+function reviewMissedScenarios() {
+  const list = document.getElementById("scenario-missed-list");
+  if (!list) return;
+
+  showScreen("scenario-missed-screen");
+
+  if (scenarioMissedQuestions.length === 0) {
+    list.innerHTML = `
+      <div class="empty-card">
+        <h2>No missed scenarios</h2>
+        <p>Missed scenario questions will appear here after you take a scenario quiz.</p>
+      </div>
+    `;
+    return;
+  }
+
+  list.innerHTML = scenarioMissedQuestions.map((item) => `
+    <div class="review-card review-wrong">
+      <p class="review-topic">${escapeHtml(item.chapter)} • ${escapeHtml(item.category)}</p>
+      <h3>${escapeHtml(item.scenario)}</h3>
+      <p><strong>Question:</strong> ${escapeHtml(item.question)}</p>
+      <p><strong>Your answer:</strong> ${escapeHtml(item.selectedAnswer || "Not recorded")}</p>
+      <p><strong>Correct answer:</strong> ${escapeHtml(item.answer)}</p>
+      <p>${escapeHtml(item.explanation)}</p>
+      <p><strong>Learning point:</strong> ${escapeHtml(item.learningPoint)}</p>
+    </div>
+  `).join("");
+}
+
+function retryWeakestScenarioCategory() {
+  const latest = scenarioScoreHistory[scenarioScoreHistory.length - 1];
+  const weakest = latest?.weakCategories?.[0]?.label;
+
+  if (!weakest) {
+    startScenarioQuiz("All Mixed");
+    return;
+  }
+
+  const matchingFilter = scenarioFilters.find((filter) => filter.value === weakest || filter.label === weakest);
+  startScenarioQuiz(matchingFilter?.label || "All Mixed");
+}
+
+function showTerminologyMenu() {
+  showScreen("terminology-menu-screen");
+  showTerminologyQuizSetup();
+}
+
+function showTerminologyQuizSetup() {
+  const panel = document.getElementById("terminology-content-panel");
+  if (!panel) return;
+
+  panel.innerHTML = `
+    <h3>Choose a Category</h3>
+    <div class="scenario-filter-list">
+      ${terminologyCategories.map((category) => {
+        const count = getTerminologyQuestions(category).length;
+        return `
+          <button class="scenario-filter-btn" onclick="startTerminologyQuiz('${escapeHtml(category)}')" type="button">
+            <span>${escapeHtml(category)}</span>
+            <small>${count} questions</small>
+          </button>
+        `;
+      }).join("")}
+    </div>
+    <div class="scenario-actions">
+      <button class="secondary-btn" onclick="reviewMissedTerminology()">Review Missed Terminology</button>
+      <button class="secondary-btn" onclick="retryWeakestTerminologyCategory()">Retry Weakest Category</button>
+    </div>
+  `;
+}
+
+function getTerminologyQuestions(category = "All Categories") {
+  if (category === "All Categories") return medicalTerminologyQuestions;
+
+  return medicalTerminologyQuestions.filter((question) => question.category === category);
+}
+
+function startTerminologyQuiz(category = "All Categories") {
+  const questions = getTerminologyQuestions(category);
+  if (questions.length === 0) return;
+
+  currentTerminologyCategory = category;
+  currentTerminologyQuestions = shuffleArray(questions);
+  currentTerminologyIndex = 0;
+  terminologyScore = 0;
+  terminologyReview = [];
+  showScreen("terminology-quiz-screen");
+  showTerminologyQuestion();
+}
+
+function showTerminologyQuestion() {
+  const question = currentTerminologyQuestions[currentTerminologyIndex];
+  const answerOptions = document.getElementById("terminology-answer-options");
+  if (!question || !answerOptions) return;
+
+  document.getElementById("terminology-progress").textContent =
+    `Question ${currentTerminologyIndex + 1} of ${currentTerminologyQuestions.length}`;
+  document.getElementById("terminology-progress-fill").style.width =
+    `${((currentTerminologyIndex + 1) / currentTerminologyQuestions.length) * 100}%`;
+  document.getElementById("terminology-category").textContent = question.category;
+  document.getElementById("terminology-question-text").textContent = question.question;
+  document.getElementById("terminology-feedback-box").classList.add("hidden");
+
+  answerOptions.innerHTML = "";
+  question.options.forEach((option) => {
+    const button = document.createElement("button");
+    button.className = "answer-btn";
+    button.textContent = option;
+    button.onclick = () => selectTerminologyAnswer(option);
+    answerOptions.appendChild(button);
+  });
+}
+
+function selectTerminologyAnswer(selectedAnswer) {
+  const question = currentTerminologyQuestions[currentTerminologyIndex];
+  const buttons = document.querySelectorAll("#terminology-answer-options .answer-btn");
+  const isCorrect = selectedAnswer === question.answer;
+
+  terminologyReview.push({
+    ...question,
+    selectedAnswer,
+    isCorrect
+  });
+
+  if (isCorrect) {
+    terminologyScore++;
+  } else {
+    saveMissedTerminology({
+      ...question,
+      selectedAnswer
+    });
+  }
+
+  buttons.forEach((button) => {
+    button.disabled = true;
+    if (button.textContent === question.answer) {
+      button.classList.add("correct");
+    } else if (button.textContent === selectedAnswer) {
+      button.classList.add("wrong");
+    }
+  });
+
+  document.getElementById("terminology-feedback-title").textContent = isCorrect ? "Correct" : "Not quite";
+  document.getElementById("terminology-feedback-text").textContent = question.explanation;
+  document.getElementById("terminology-learning-point").innerHTML =
+    `<strong>Learning point:</strong> ${escapeHtml(question.learningPoint)}`;
+  document.getElementById("terminology-feedback-box").classList.remove("hidden");
+}
+
+function saveMissedTerminology(question) {
+  const existingIndex = terminologyMissedQuestions.findIndex((item) => item.id === question.id);
+
+  if (existingIndex >= 0) {
+    terminologyMissedQuestions[existingIndex] = question;
+  } else {
+    terminologyMissedQuestions.push(question);
+  }
+
+  localStorage.setItem("emtTerminologyMissedQuestions", JSON.stringify(terminologyMissedQuestions));
+}
+
+function nextTerminologyQuestion() {
+  currentTerminologyIndex++;
+
+  if (currentTerminologyIndex < currentTerminologyQuestions.length) {
+    showTerminologyQuestion();
+  } else {
+    showTerminologyResults();
+  }
+}
+
+function showTerminologyResults() {
+  const percent = Math.round((terminologyScore / currentTerminologyQuestions.length) * 100);
+  const missed = terminologyReview.filter((item) => !item.isCorrect);
+  const weakCategories = getWeakScenarioGroups(missed, "category");
+
+  terminologyScoreHistory.push({
+    category: currentTerminologyCategory,
+    score: terminologyScore,
+    total: currentTerminologyQuestions.length,
+    percent,
+    missedCount: missed.length,
+    weakCategories,
+    completedAt: new Date().toISOString()
+  });
+  terminologyScoreHistory = terminologyScoreHistory.slice(-25);
+  localStorage.setItem("emtTerminologyScoreHistory", JSON.stringify(terminologyScoreHistory));
+
+  document.getElementById("terminology-result-score").textContent =
+    `${terminologyScore} out of ${currentTerminologyQuestions.length} correct (${percent}%)`;
+  document.getElementById("terminology-result-message").textContent =
+    missed.length === 0
+      ? "Clean run. Your terminology is reading sharp."
+      : "Review the missed terms, then retry the weakest category.";
+  renderTerminologyWeakSummary(missed, weakCategories);
+  showScreen("terminology-results-screen");
+}
+
+function renderTerminologyWeakSummary(missed, weakCategories) {
+  const summary = document.getElementById("terminology-weak-summary");
+  if (!summary) return;
+
+  if (missed.length === 0) {
+    summary.innerHTML = `
+      <h3>No weak categories</h3>
+      <p>You did not miss any terminology questions on this attempt.</p>
+    `;
+    return;
+  }
+
+  summary.innerHTML = `
+    <h3>Missed Questions: ${missed.length}</h3>
+    <p><strong>Weak categories:</strong> ${escapeHtml(formatWeakScenarioGroups(weakCategories))}</p>
+    <div class="result-missed-list">
+      ${missed.map((item) => `
+        <div class="result-missed-item">
+          <p>${escapeHtml(item.question)}</p>
+          <span>${escapeHtml(item.category)}</span>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function reviewMissedTerminology() {
+  const list = document.getElementById("terminology-missed-list");
+  if (!list) return;
+
+  showScreen("terminology-missed-screen");
+
+  if (terminologyMissedQuestions.length === 0) {
+    list.innerHTML = `
+      <div class="empty-card">
+        <h2>No missed terminology</h2>
+        <p>Missed terminology questions will appear here after you take the terminology quiz.</p>
+      </div>
+    `;
+    return;
+  }
+
+  list.innerHTML = terminologyMissedQuestions.map((item) => `
+    <div class="review-card review-wrong">
+      <p class="review-topic">${escapeHtml(item.category)}</p>
+      <h3>${escapeHtml(item.question)}</h3>
+      <p><strong>Your answer:</strong> ${escapeHtml(item.selectedAnswer || "Not recorded")}</p>
+      <p><strong>Correct answer:</strong> ${escapeHtml(item.answer)}</p>
+      <p>${escapeHtml(item.explanation)}</p>
+      <p><strong>Learning point:</strong> ${escapeHtml(item.learningPoint)}</p>
+    </div>
+  `).join("");
+}
+
+function retryWeakestTerminologyCategory() {
+  const latest = terminologyScoreHistory[terminologyScoreHistory.length - 1];
+  const weakest = latest?.weakCategories?.[0]?.label || "All Categories";
+  startTerminologyQuiz(weakest);
 }
 
 function prepareQuestionsForQuiz(questions, quizKey, amount = questions.length) {
@@ -883,7 +1459,11 @@ function loadFlashcards() {
 
   let flashcardSet = [];
 
-  if (selectedValue === "all") {
+  if (selectedValue === "medical-terminology") {
+
+    flashcardSet = medicalTerminologyFlashcards;
+
+  } else if (selectedValue === "all") {
 
     flashcardSet = flashcards;
 
@@ -917,7 +1497,11 @@ function showFlashcard() {
   const card = currentFlashcards[flashcardIndex];
 
   document.getElementById("flashcard-label").textContent =
-    flashcardShowingDefinition ? "Definition" : `Chapter ${card.chapter} Term`;
+    flashcardShowingDefinition
+      ? "Definition"
+      : card.category
+        ? `${card.category} Term`
+        : `Chapter ${card.chapter} Term`;
 
   document.getElementById("flashcard-text").textContent =
     flashcardShowingDefinition ? card.definition : card.term;
@@ -1268,11 +1852,23 @@ Object.assign(window, {
   logoutUser,
   nextFlashcard,
   nextQuestion,
+  nextScenarioQuestion,
+  nextTerminologyQuestion,
   previousFlashcard,
+  retryWeakestScenarioCategory,
+  retryWeakestTerminologyCategory,
+  reviewMissedScenarios,
+  reviewMissedTerminology,
   restartQuiz,
   showReview,
+  showScenarioMenu,
+  showTerminologyMenu,
+  showTerminologyQuizSetup,
   showScreen,
   selectAvatar,
+  startChapterQuiz,
+  startScenarioQuiz,
+  startTerminologyQuiz,
   startQuickQuiz,
   toggleProfileMenu
 });

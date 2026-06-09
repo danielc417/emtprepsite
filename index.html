@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EMT Prep Hub</title>
-  <link rel="stylesheet" href="style.css?v=2" />
+  <link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
   <div class="phone-app">
@@ -23,7 +23,7 @@
     <main>
       <section id="home-screen" class="screen active">
         <div class="hero-card">
-          <h2>Study Chapters 6, 8, 9, 10, and 15</h2>
+          <h2>Study Chapters 6, 8, 9, 10, 12, 15, and 16</h2>
           <p>Practice EMT questions, review missed answers, and build confidence before class.</p>
           <div class="stats-section">
             <h3>Lifetime</h3>
@@ -112,6 +112,94 @@
         </div>
       </section>
 
+      <section id="scenario-quiz-screen" class="screen">
+        <div class="quiz-top">
+          <button class="icon-btn" onclick="goHome()">←</button>
+          <p id="scenario-progress">Scenario 1 of 10</p>
+        </div>
+
+        <div class="progress-bar">
+          <div id="scenario-progress-fill"></div>
+        </div>
+
+        <div class="scenario-card">
+          <p id="scenario-meta" class="scenario-meta"></p>
+          <p id="scenario-text" class="scenario-text"></p>
+          <h2 id="scenario-question-text"></h2>
+        </div>
+
+        <div id="scenario-answer-options" class="answer-list"></div>
+
+        <div id="scenario-feedback-box" class="feedback hidden">
+          <h3 id="scenario-feedback-title"></h3>
+          <p id="scenario-feedback-text"></p>
+          <p id="scenario-learning-point"></p>
+          <button class="primary-btn" onclick="nextScenarioQuestion()">Next</button>
+        </div>
+      </section>
+
+      <section id="scenario-results-screen" class="screen">
+        <div class="result-card">
+          <h2>Scenario Quiz Complete</h2>
+          <p id="scenario-result-score"></p>
+          <p id="scenario-result-message"></p>
+          <div id="scenario-weak-summary" class="result-missed-summary"></div>
+          <button class="primary-btn" onclick="reviewMissedScenarios()">Review Missed Scenarios</button>
+          <button class="secondary-btn" onclick="retryWeakestScenarioCategory()">Retry Weakest Category</button>
+          <button class="secondary-btn" onclick="startScenarioQuiz()">Try Scenarios Again</button>
+          <button class="secondary-btn" onclick="goHome()">Back Home</button>
+        </div>
+      </section>
+
+      <section id="terminology-menu-screen" class="screen">
+        <div class="scenario-top">
+          <button class="icon-btn" onclick="goHome()">←</button>
+          <div>
+            <p class="scenario-label">Medical Terminology</p>
+            <h2>Master Quiz</h2>
+          </div>
+        </div>
+
+        <div id="terminology-content-panel" class="scenario-panel"></div>
+      </section>
+
+      <section id="terminology-quiz-screen" class="screen">
+        <div class="quiz-top">
+          <button class="icon-btn" onclick="showTerminologyMenu()">←</button>
+          <p id="terminology-progress">Question 1 of 75</p>
+        </div>
+
+        <div class="progress-bar">
+          <div id="terminology-progress-fill"></div>
+        </div>
+
+        <div class="question-card">
+          <p id="terminology-category" class="scenario-meta"></p>
+          <h2 id="terminology-question-text"></h2>
+        </div>
+
+        <div id="terminology-answer-options" class="answer-list"></div>
+
+        <div id="terminology-feedback-box" class="feedback hidden">
+          <h3 id="terminology-feedback-title"></h3>
+          <p id="terminology-feedback-text"></p>
+          <p id="terminology-learning-point"></p>
+          <button class="primary-btn" onclick="nextTerminologyQuestion()">Next</button>
+        </div>
+      </section>
+
+      <section id="terminology-results-screen" class="screen">
+        <div class="result-card">
+          <h2>Terminology Quiz Complete</h2>
+          <p id="terminology-result-score"></p>
+          <p id="terminology-result-message"></p>
+          <div id="terminology-weak-summary" class="result-missed-summary"></div>
+          <button class="primary-btn" onclick="reviewMissedTerminology()">Review Missed Terminology</button>
+          <button class="secondary-btn" onclick="retryWeakestTerminologyCategory()">Retry Weakest Category</button>
+          <button class="secondary-btn" onclick="showTerminologyMenu()">Back to Terminology</button>
+        </div>
+      </section>
+
       <section id="flashcards-screen" class="screen">
   <div class="flashcard-top">
     <h2>Flashcards</h2>
@@ -122,6 +210,7 @@
       <option value="9">Chapter 9</option>
       <option value="10">Chapter 10</option>
       <option value="15">Chapter 15</option>
+      <option value="medical-terminology">Medical Terminology</option>
     </select>
   </div>
 
@@ -144,8 +233,26 @@
   </div>
 
   <div id="review-list" class="review-list"></div>
-</section>
-      <section id="missed-screen" class="screen">
+</section>    
+      <section id="scenario-missed-screen" class="screen">
+        <div class="review-top">
+          <button class="icon-btn" onclick="goHome()">←</button>
+          <h2>Missed Scenarios</h2>
+        </div>
+
+        <div id="scenario-missed-list" class="review-list"></div>
+      </section>
+
+      <section id="terminology-missed-screen" class="screen">
+        <div class="review-top">
+          <button class="icon-btn" onclick="showTerminologyMenu()">←</button>
+          <h2>Missed Terminology</h2>
+        </div>
+
+        <div id="terminology-missed-list" class="review-list"></div>
+      </section>
+
+  <section id="missed-screen" class="screen">
         <div class="empty-card">
           <h2>Missed Questions</h2>
           <p>Questions you miss will be saved here later.</p>
@@ -222,7 +329,6 @@
 
   </div>
 
-  <script type="module" src="firebase-config.js"></script>
-  <script type="module" src="script.js"></script>
+  <script type="module" src="script.js?v=6"></script>
 </body>
 </html>
