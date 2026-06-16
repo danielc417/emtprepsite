@@ -25,6 +25,11 @@ const chapters = [
     description: "Perfusion, shock types, progression, patient assessment, and emergency care."
   },
   {
+    id: 14,
+    title: "Chapter 14: Medical Overview",
+    description: "Medical calls, NOI, infection risks, destination decisions, terminology, and scenarios."
+  },
+  {
     id: 15,
     title: "Respiratory Emergencies",
     description: "Dyspnea, breath sounds, respiratory diseases, oxygen, BVM, CPAP, inhalers, and special airway problems."
@@ -33,6 +38,36 @@ const chapters = [
     id: 16,
     title: "Chapter 16: Cardiovascular Emergencies",
     description: "Heart anatomy, ACS, cardiac chest pain, CHF, cardiac medications, devices, cardiac arrest, and AED care."
+  },
+  {
+    id: 17,
+    title: "Chapter 17: Neurologic Emergencies",
+    description: "Stroke, TIA, seizures, headache red flags, altered mental status, stroke scales, and transport decisions."
+  },
+  {
+    id: 18,
+    title: "Chapter 18: Gastrointestinal and Urologic Emergencies",
+    description: "Acute abdomen, GI bleeding, peritonitis, renal failure, dialysis, urinary disorders, and shock risk."
+  },
+  {
+    id: 19,
+    title: "Chapter 19: Endocrine and Hematologic Emergencies",
+    description: "Diabetes, DKA, hypoglycemia, HHNS, sickle cell crisis, hemophilia, thrombosis, and supportive care."
+  },
+  {
+    id: 20,
+    title: "Chapter 20: Allergy and Anaphylaxis",
+    description: "Allergic reactions, anaphylaxis, airway swelling, shock, epinephrine, triggers, and reassessment."
+  },
+  {
+    id: 21,
+    title: "Chapter 21: Toxicology",
+    description: "Poisoning routes, toxidromes, naloxone, activated charcoal, poison control, and contaminated scenes."
+  },
+  {
+    id: 22,
+    title: "Chapter 22: Psychiatric Emergencies",
+    description: "Behavioral crisis, medical mimics, suicide risk, agitated delirium, restraint safety, and legal concerns."
   }
 ];
 
@@ -77,6 +112,209 @@ const chapter12Questions = [
   { question: "A burn patient may go into shock because of:", options: ["Plasma/fluid loss", "Extra oxygen", "Too much blood volume", "Increased bone density"], answer: "Plasma/fluid loss", explanation: "Burns can cause major fluid and plasma loss, leading to hypovolemic shock." },
   { question: "Restlessness and anxiety in shock usually happen because:", options: ["Brain is not getting enough oxygen/perfusion", "Patient is always pretending", "Blood pressure is always high", "Skin temperature is normal"], answer: "Brain is not getting enough oxygen/perfusion", explanation: "The brain is very sensitive to poor oxygen delivery and perfusion." },
   { question: "Best EMT mindset for shock is:", options: ["Wait until BP drops", "Recognize early signs and treat fast", "Only treat if patient is unconscious", "Shock is not serious"], answer: "Recognize early signs and treat fast", explanation: "Shock is time-sensitive. Recognize early, support ABCs, control bleeding, keep warm, and transport." }
+];
+
+const chapter14Questions = [
+  {
+    question: "A patient develops crushing chest pain, loses control of the vehicle, and collides with a parked car. Which statement is MOST accurate regarding classification of this call?",
+    options: ["This is purely trauma", "This is purely medical", "Both medical and traumatic emergencies may exist simultaneously", "Only visible injuries should be treated"],
+    answer: "Both medical and traumatic emergencies may exist simultaneously",
+    explanation: "Medical emergencies can cause traumatic events, so EMTs must assess for both.",
+    category: "Medical vs Trauma",
+    chapter: 14
+  },
+  {
+    question: "During scene size-up of a medical patient, determining the nature of illness primarily involves:",
+    options: ["Reading dispatch notes only", "Gathering clues from scene, patient, family, and complaint", "Waiting until hospital diagnosis", "Obtaining a blood pressure first"],
+    answer: "Gathering clues from scene, patient, family, and complaint",
+    explanation: "NOI comes from scene clues and patient presentation, not just dispatch.",
+    category: "Nature of Illness / Patient Assessment",
+    chapter: 14
+  },
+  {
+    question: "Which patient should raise the highest concern for infectious disease exposure?",
+    options: ["Patient with ankle sprain", "Patient with fever, cough, and recent international travel", "Patient with isolated wrist pain", "Patient with minor abrasion"],
+    answer: "Patient with fever, cough, and recent international travel",
+    explanation: "Travel history plus respiratory symptoms raises concern for infectious disease.",
+    category: "Infectious and Communicable Diseases",
+    chapter: 14
+  },
+  {
+    question: "Which patient most likely requires high-priority transport?",
+    options: ["Alert patient with mild sore throat", "Patient with altered mental status", "Patient with small rash", "Patient requesting evaluation only"],
+    answer: "Patient with altered mental status",
+    explanation: "AMS may indicate life-threatening illness requiring rapid transport.",
+    category: "Management, Transport, and Destination",
+    chapter: 14
+  },
+  {
+    question: "Why may the closest hospital not always be the best destination?",
+    options: ["Distance never matters", "Some patients need specialty resources", "EMTs choose randomly", "Closest hospitals refuse critical patients"],
+    answer: "Some patients need specialty resources",
+    explanation: "Stroke, STEMI, trauma, and specialty patients may need specialized centers.",
+    category: "Management, Transport, and Destination",
+    chapter: 14
+  },
+  {
+    question: "An infectious disease is best defined as:",
+    options: ["Any disease that spreads", "A disease caused by harmful organisms", "A trauma-related illness", "A psychiatric disorder"],
+    answer: "A disease caused by harmful organisms",
+    explanation: "Infectious disease involves pathogens entering and multiplying in the body.",
+    category: "Medical Terminology",
+    chapter: 14
+  },
+  {
+    question: "A communicable disease is one that:",
+    options: ["Cannot spread", "Spreads from one person/species to another", "Only affects adults", "Only affects the immune system"],
+    answer: "Spreads from one person/species to another",
+    explanation: "Communicable diseases can transmit between hosts.",
+    category: "Medical Terminology",
+    chapter: 14
+  },
+  {
+    question: "Following the primary assessment of a medical patient, what should be included next?",
+    options: ["Only allergies", "SAMPLE, OPQRST, vitals, history", "Transport immediately every time", "Wait for ALS"],
+    answer: "SAMPLE, OPQRST, vitals, history",
+    explanation: "History and focused assessment help identify the cause.",
+    category: "Nature of Illness / Patient Assessment",
+    chapter: 14
+  },
+  {
+    question: "Which symptom cluster may suggest infection?",
+    options: ["Fever and rash", "Vomiting and diarrhea", "Difficulty breathing", "All of the above"],
+    answer: "All of the above",
+    explanation: "All may be signs of infectious illness.",
+    category: "Infectious and Communicable Diseases",
+    chapter: 14
+  },
+  {
+    question: "An epidemic refers to:",
+    options: ["Global outbreak", "Higher than expected disease spread in a population", "Single patient illness", "Animal-only disease"],
+    answer: "Higher than expected disease spread in a population",
+    explanation: "Epidemics exceed expected disease levels in an area.",
+    category: "Epidemic and Pandemic",
+    chapter: 14
+  },
+  {
+    question: "A pandemic refers to:",
+    options: ["Local outbreak", "Global spread of disease", "Food poisoning", "Noninfectious illness"],
+    answer: "Global spread of disease",
+    explanation: "Pandemics affect multiple countries or continents.",
+    category: "Epidemic and Pandemic",
+    chapter: 14
+  },
+  {
+    question: "In suspected infectious disease calls, EMT priority is:",
+    options: ["Travel history before ABCs", "Treat life threats first", "Call CDC first", "Skip primary assessment"],
+    answer: "Treat life threats first",
+    explanation: "ABCs always come before secondary concerns.",
+    category: "Important Overview",
+    chapter: 14
+  },
+  {
+    question: "Which disease is classically associated with airborne spread?",
+    options: ["Tuberculosis", "Appendicitis", "Kidney stone", "Stroke"],
+    answer: "Tuberculosis",
+    explanation: "TB is a major airborne infectious disease concern.",
+    category: "Common Serious Communicable Diseases",
+    chapter: 14
+  },
+  {
+    question: "Which disease is strongly associated with blood and body fluid exposure?",
+    options: ["Hepatitis", "Asthma", "COPD", "Syncope"],
+    answer: "Hepatitis",
+    explanation: "Hepatitis commonly spreads through blood/body fluid exposure.",
+    category: "Common Serious Communicable Diseases",
+    chapter: 14
+  },
+  {
+    question: "Stroke patients may benefit from transport to:",
+    options: ["Any clinic", "Stroke center", "Urgent care only", "Primary care office"],
+    answer: "Stroke center",
+    explanation: "Specialized stroke centers improve outcomes.",
+    category: "Management, Transport, and Destination",
+    chapter: 14
+  },
+  {
+    question: "Long rural transport for suspected MI may justify:",
+    options: ["Delayed transport", "Air medical consideration", "No ALS", "Walking transport"],
+    answer: "Air medical consideration",
+    explanation: "Air transport may reduce time to definitive care.",
+    category: "Management, Transport, and Destination",
+    chapter: 14
+  },
+  {
+    question: "Why are standard precautions used on every patient?",
+    options: ["Because every patient may pose exposure risk", "Only fever patients matter", "PPE is optional", "Only trauma spreads disease"],
+    answer: "Because every patient may pose exposure risk",
+    explanation: "You cannot reliably identify infectious patients by appearance.",
+    category: "Medical Terminology",
+    chapter: 14
+  },
+  {
+    question: "Diabetic emergencies belong to which category?",
+    options: ["Endocrine", "Respiratory", "Trauma", "Psychiatric"],
+    answer: "Endocrine",
+    explanation: "Diabetes is an endocrine disorder.",
+    category: "Medical Terminology",
+    chapter: 14
+  },
+  {
+    question: "Allergic reactions belong to which category?",
+    options: ["Immunologic", "Neurologic", "GI", "Urologic"],
+    answer: "Immunologic",
+    explanation: "Allergies involve immune system response.",
+    category: "Medical Terminology",
+    chapter: 14
+  },
+  {
+    question: "Stroke and seizures belong to which category?",
+    options: ["Neurologic", "Respiratory", "Hematologic", "Urologic"],
+    answer: "Neurologic",
+    explanation: "These conditions affect the nervous system.",
+    category: "Medical Terminology",
+    chapter: 14
+  },
+  {
+    question: "You arrive to a 68-year-old with fever, productive cough, and dyspnea. First action?",
+    options: ["Primary assessment with PPE", "Insurance questions", "Transport immediately without exam", "Only ask travel history"],
+    answer: "Primary assessment with PPE",
+    explanation: "Scene safety and ABCs remain priority.",
+    category: "Situational Scenarios",
+    chapter: 14
+  },
+  {
+    question: "A patient with chest pressure is near a small hospital lacking cath lab. Best decision?",
+    options: ["Always nearest hospital", "Consider cardiac-capable facility", "Patient chooses randomly", "Delay care"],
+    answer: "Consider cardiac-capable facility",
+    explanation: "Destination should match patient needs.",
+    category: "Situational Scenarios",
+    chapter: 14
+  },
+  {
+    question: "Fever, stiff neck, AMS, and rash most suggest:",
+    options: ["Meningitis", "Ankle fracture", "Anxiety", "Kidney stone"],
+    answer: "Meningitis",
+    explanation: "Classic meningitis presentation includes fever and neck stiffness.",
+    category: "Situational Scenarios",
+    chapter: 14
+  },
+  {
+    question: "A stable asthma patient improves after inhaler assistance. Transport decision?",
+    options: ["Still transport and reassess", "Automatic refusal", "Always lights and sirens", "Ignore vitals"],
+    answer: "Still transport and reassess",
+    explanation: "Improvement helps, but continued monitoring is important.",
+    category: "Situational Scenarios",
+    chapter: 14
+  },
+  {
+    question: "Cough, night sweats, weight loss, and TB exposure suggest need for:",
+    options: ["Respiratory precautions", "No PPE", "Only gloves", "No concern"],
+    answer: "Respiratory precautions",
+    explanation: "These are classic TB warning signs.",
+    category: "Situational Scenarios",
+    chapter: 14
+  }
 ];
 
 const chapter16Questions = [
@@ -130,6 +368,339 @@ const chapter16Questions = [
   { question: "During AED shock delivery, rescuers should:", options: ["Make sure nobody is touching the patient", "Continue touching the patient", "Give water", "Remove all oxygen from the scene permanently"], answer: "Make sure nobody is touching the patient", explanation: "Nobody should touch the patient during AED shock delivery." },
   { question: "After AED delivers a shock, EMTs should:", options: ["Immediately resume CPR", "Wait 5 minutes", "Check blood pressure first", "Stop all care"], answer: "Immediately resume CPR", explanation: "After a shock, CPR should resume immediately to minimize interruptions." },
   { question: "What is the best EMT mindset for cardiovascular emergencies?", options: ["Chest pain is anxiety until proven otherwise", "Treat possible cardiac chest pain seriously and transport promptly", "Ignore symptoms if patient is young", "Wait until cardiac arrest before treatment"], answer: "Treat possible cardiac chest pain seriously and transport promptly", explanation: "Possible cardiac chest pain should be taken seriously with assessment, treatment, and prompt transport." }
+];
+
+const chapter17Questions = [
+  {
+    question: "A patient is awake, follows commands, and repeatedly answers unrelated words to simple questions. Which finding is MOST consistent with a dominant-hemisphere cortical problem rather than simple dysarthria?",
+    options: ["Clear speech that fails to match the question being asked", "A weak voice after several minutes of speaking", "Slurred but appropriate answers with intact comprehension", "Hoarseness after repeated vomiting"],
+    answer: "Clear speech that fails to match the question being asked",
+    explanation: "Receptive aphasia can produce fluent but inappropriate speech, suggesting a language-processing deficit rather than poor articulation.",
+    category: "Stroke Assessment",
+    chapter: 17
+  },
+  {
+    question: "A 72-year-old suddenly cannot move the right arm and has difficulty producing words, but appears to understand your instructions. Which anatomic correlation is MOST defensible?",
+    options: ["Left cerebral hemisphere ischemia affecting motor and expressive speech pathways", "Right cerebral hemisphere ischemia with left-sided neglect", "Cerebellar ischemia causing isolated coordination loss", "Brain stem dysfunction limited to pupil constriction"],
+    answer: "Left cerebral hemisphere ischemia affecting motor and expressive speech pathways",
+    explanation: "Most speech control is left-sided, and each hemisphere controls the opposite side of the body.",
+    category: "Anatomy and Physiology",
+    chapter: 17
+  },
+  {
+    question: "Which presentation should make an EMT most suspicious for hemorrhagic stroke or subarachnoid hemorrhage rather than an uncomplicated migraine?",
+    options: ["Sudden maximal-intensity headache with vomiting and decreasing responsiveness", "Throbbing headache similar to the patient's usual pattern with nausea", "Facial pressure worse when bending forward with nasal congestion", "Dull bilateral headache after a stressful shift without neurologic deficit"],
+    answer: "Sudden maximal-intensity headache with vomiting and decreasing responsiveness",
+    explanation: "A sudden severe headache with neurologic decline suggests intracranial bleeding or rising intracranial pressure.",
+    category: "Headache Red Flags",
+    chapter: 17
+  },
+  {
+    question: "A patient has acute left arm weakness that fully resolves before EMS arrival. Which statement best reflects EMT decision-making?",
+    options: ["Treat the episode as a possible TIA and recommend emergency evaluation", "Cancel transport because resolved deficits exclude brain ischemia", "Classify it as hypoglycemia unless the glucose is above 200 mg/dL", "Delay care until the same deficit reappears during your assessment"],
+    answer: "Treat the episode as a possible TIA and recommend emergency evaluation",
+    explanation: "TIA symptoms can resolve, but the event is still an emergency and may warn of a later stroke.",
+    category: "TIA and Stroke Risk",
+    chapter: 17
+  },
+  {
+    question: "A suspected stroke patient was normal at bedtime but awoke at 0700 with aphasia. What onset time should be reported for stroke-alert decision-making?",
+    options: ["The time the patient was last known well at bedtime", "0700, because symptoms were first discovered then", "The time EMS arrived on scene", "The time the family called 911"],
+    answer: "The time the patient was last known well at bedtime",
+    explanation: "For unwitnessed or wake-up strokes, the last known well time is the last time the patient was known to be normal.",
+    category: "Stroke Alert and Documentation",
+    chapter: 17
+  },
+  {
+    question: "During a Cincinnati-style stroke screen, both arms fall immediately after you ask the patient to hold them out. What is the best interpretation?",
+    options: ["The test is nondiagnostic and should be repeated or adapted", "The patient has proven bilateral stroke", "The finding rules out unilateral motor weakness", "The patient has a positive arm drift on the weaker side only"],
+    answer: "The test is nondiagnostic and should be repeated or adapted",
+    explanation: "If both arms fall, the patient may not understand or cooperate; the result does not isolate unilateral drift.",
+    category: "Stroke Assessment",
+    chapter: 17
+  },
+  {
+    question: "Which field finding most strongly supports right hemispheric stroke with neglect?",
+    options: ["The patient denies a problem and moves the right arm when asked to raise the left", "The patient understands speech but cannot form words", "The patient has bilateral pinpoint pupils after opioid use", "The patient reports flashing lights before a familiar migraine"],
+    answer: "The patient denies a problem and moves the right arm when asked to raise the left",
+    explanation: "Right hemispheric strokes may cause left-sided weakness and neglect, with poor awareness of the affected side.",
+    category: "Stroke Presentation",
+    chapter: 17
+  },
+  {
+    question: "Which combination should increase concern for rising intracranial pressure from intracranial bleeding?",
+    options: ["Hypertension, slowing pulse, irregular respirations, and unequal pupils", "Hypotension, wheezing, urticaria, and tachycardia", "Fever, productive cough, pleuritic pain, and crackles", "Polyuria, thirst, warm skin, and gradual confusion"],
+    answer: "Hypertension, slowing pulse, irregular respirations, and unequal pupils",
+    explanation: "High pressure in the skull can produce hypertension with bradycardia, abnormal breathing, and pupillary changes.",
+    category: "Intracranial Pressure",
+    chapter: 17
+  },
+  {
+    question: "A confused diabetic patient has unilateral weakness and slurred speech. Which action prevents a common neurologic assessment error?",
+    options: ["Check blood glucose while continuing stroke-focused assessment", "Assume stroke because hypoglycemia never causes focal findings", "Give oral glucose immediately even though swallowing is impaired", "Wait for the weakness to resolve before obtaining vital signs"],
+    answer: "Check blood glucose while continuing stroke-focused assessment",
+    explanation: "Hypoglycemia can mimic stroke, but unsafe oral intake should be avoided in altered patients or those who cannot swallow.",
+    category: "Stroke Mimics",
+    chapter: 17
+  },
+  {
+    question: "Which history most favors postictal state over acute ischemic stroke as the cause of current confusion and hemiparesis?",
+    options: ["Witnessed generalized convulsion followed by gradual improvement over several minutes", "Abrupt aphasia with no witnessed seizure and persistent arm drift", "Sudden worst headache followed by progressive unresponsiveness", "Normal glucose with facial droop beginning during exertion"],
+    answer: "Witnessed generalized convulsion followed by gradual improvement over several minutes",
+    explanation: "Postictal confusion and even temporary weakness can resemble stroke, but it usually improves after seizure activity ends.",
+    category: "Stroke Mimics",
+    chapter: 17
+  },
+  {
+    question: "A patient briefly stares, stops responding, has no major motor activity, and then returns to baseline with a short memory gap. Which seizure type is most consistent?",
+    options: ["Absence seizure", "Generalized tonic-clonic seizure", "Status epilepticus", "Simple partial seizure with preserved awareness"],
+    answer: "Absence seizure",
+    explanation: "Absence seizures can produce a brief lapse in consciousness without the dramatic motor activity of tonic-clonic seizures.",
+    category: "Seizure Types",
+    chapter: 17
+  },
+  {
+    question: "Which description best separates a complex partial seizure from a simple partial seizure?",
+    options: ["Complex partial seizures alter interaction with the environment; simple partial seizures preserve consciousness", "Complex partial seizures always involve both hemispheres; simple partial seizures always cause apnea", "Complex partial seizures require fever; simple partial seizures require hypoglycemia", "Complex partial seizures last over 30 minutes; simple partial seizures last under 10 seconds"],
+    answer: "Complex partial seizures alter interaction with the environment; simple partial seizures preserve consciousness",
+    explanation: "Simple partial seizures do not change consciousness, while complex partial seizures involve altered mental status and abnormal interaction.",
+    category: "Seizure Types",
+    chapter: 17
+  },
+  {
+    question: "A seizure continues beyond 5 minutes and the patient never regains consciousness between episodes. What is the most appropriate classification and operational concern?",
+    options: ["Status epilepticus requiring airway support, rapid transport, and ALS consideration", "A typical postictal period requiring only quiet observation", "Syncope with tremors requiring orthostatic vital signs first", "A TIA requiring delayed neurologic reassessment after full recovery"],
+    answer: "Status epilepticus requiring airway support, rapid transport, and ALS consideration",
+    explanation: "Prolonged or recurrent seizures without recovery are life-threatening and may require advanced airway care and seizure-stopping medication.",
+    category: "Status Epilepticus",
+    chapter: 17
+  },
+  {
+    question: "During an active generalized seizure, which intervention is most appropriate for an EMT?",
+    options: ["Protect from injury, prepare suction and oxygen, and manage the airway as soon as feasible", "Restrain all extremities forcefully to shorten the seizure", "Insert an oral airway during tonic jaw contraction", "Place a tongue blade between the teeth to prevent tongue biting"],
+    answer: "Protect from injury, prepare suction and oxygen, and manage the airway as soon as feasible",
+    explanation: "Care focuses on preventing injury and supporting airway and oxygenation; forced restraint or mouth insertion can harm the patient.",
+    category: "Seizure Management",
+    chapter: 17
+  },
+  {
+    question: "A postictal patient is combative, incontinent, and confused after a witnessed tonic-clonic seizure. Which approach best matches EMT priorities?",
+    options: ["Maintain scene safety, protect dignity, assess for trauma, and reassess airway and glucose as indicated", "Confront the patient loudly to determine whether behavior is intentional", "Avoid transport if the patient is embarrassed by incontinence", "Ignore possible head injury because seizures are medical rather than traumatic"],
+    answer: "Maintain scene safety, protect dignity, assess for trauma, and reassess airway and glucose as indicated",
+    explanation: "Postictal patients may be confused or combative and may have injuries; care should be calm, protective, and clinically thorough.",
+    category: "Postictal Care",
+    chapter: 17
+  },
+  {
+    question: "Which feature most strongly differentiates syncope from seizure in the typical presentation?",
+    options: ["Syncope usually lacks a prolonged postictal state", "Syncope always occurs while the patient is lying down", "Syncope commonly causes prolonged tonic-clonic activity", "Syncope produces unilateral neglect before loss of consciousness"],
+    answer: "Syncope usually lacks a prolonged postictal state",
+    explanation: "Fainting is often associated with standing and rapid recovery, while seizures commonly produce a postictal period.",
+    category: "Syncope vs Seizure",
+    chapter: 17
+  },
+  {
+    question: "Which AMS differential list best fits the AEIOU-TIPS approach used for neurologic emergencies?",
+    options: ["Alcohol, epilepsy/endocrine/electrolytes, insulin, overdose/opiates, uremia, trauma/temperature, infection, poisoning/psychogenic, shock/stroke/seizure/syncope", "Airway, edema, ischemia, oxygen, urine, tension pneumothorax, insulin, perfusion, sepsis", "Aphasia, embolus, ICP, occlusion, unilateral weakness, thrombosis, ischemia, pupils, seizure", "Allergy, epiglottitis, inhalation, obstruction, upper airway, tension, infection, pneumonia, shock"],
+    answer: "Alcohol, epilepsy/endocrine/electrolytes, insulin, overdose/opiates, uremia, trauma/temperature, infection, poisoning/psychogenic, shock/stroke/seizure/syncope",
+    explanation: "AEIOU-TIPS is a broad altered mental status differential, not a stroke-only or airway-only mnemonic.",
+    category: "Altered Mental Status",
+    chapter: 17
+  },
+  {
+    question: "A neurologic patient is unresponsive with snoring, shallow respirations at 6/min. Which priority comes before completing a detailed stroke scale?",
+    options: ["Open and support the airway, suction as needed, and ventilate if breathing remains inadequate", "Finish FAST because stroke alerts always precede airway management", "Give oral glucose before checking gag or swallow ability", "Ask bystanders for medication names before touching the patient"],
+    answer: "Open and support the airway, suction as needed, and ventilate if breathing remains inadequate",
+    explanation: "ABCs remain the priority; neurologic disability assessment cannot outrank airway and ventilation failure.",
+    category: "Primary Assessment",
+    chapter: 17
+  },
+  {
+    question: "Which finding should be documented and reported most urgently for a suspected stroke patient being transported to a stroke center?",
+    options: ["Last known well time, stroke scale findings, GCS, and reassessment changes", "The patient's preferred pharmacy and insurance carrier", "Only the patient's blood pressure because CT will determine everything else", "The exact brand of stretcher used during transport"],
+    answer: "Last known well time, stroke scale findings, GCS, and reassessment changes",
+    explanation: "Stroke teams need onset timing, neurologic findings, GCS, and trends to determine time-sensitive treatment options.",
+    category: "Stroke Alert and Documentation",
+    chapter: 17
+  },
+  {
+    question: "Why can giving clot-dissolving medication without CT confirmation be catastrophic?",
+    options: ["Hemorrhagic stroke can worsen if bleeding is treated like an ischemic clot", "CT scans are used only to confirm hypoglycemia", "Clot-dissolving drugs primarily reverse seizures", "The medication works only in strokes caused by fever"],
+    answer: "Hemorrhagic stroke can worsen if bleeding is treated like an ischemic clot",
+    explanation: "CT helps distinguish bleeding from ischemia; thrombolytics can worsen intracranial hemorrhage.",
+    category: "Stroke Pathophysiology",
+    chapter: 17
+  },
+  {
+    question: "A patient reports headache, fever, stiff neck, photophobia, and altered mental status. Which field impression should remain high on the differential?",
+    options: ["Meningitis requiring standard precautions and supportive ABC care", "Benign tension headache with no transport need", "Simple postictal state if no seizure was witnessed", "Isolated sinus headache requiring no emergency assessment"],
+    answer: "Meningitis requiring standard precautions and supportive ABC care",
+    explanation: "Fever, stiff neck, light sensitivity, headache, and AMS suggest a serious central nervous system infection.",
+    category: "Headache Red Flags",
+    chapter: 17
+  },
+  {
+    question: "Multiple occupants in the same residence complain of headache and confusion without focal neurologic deficits. Which cause should be considered early?",
+    options: ["Carbon monoxide exposure", "Left hemispheric embolic stroke in all patients", "Medication noncompliance with antiseizure drugs", "Subdural bleeding from separate unwitnessed trauma"],
+    answer: "Carbon monoxide exposure",
+    explanation: "Multiple patients with headache or altered mentation in the same environment should prompt concern for toxic exposure such as carbon monoxide.",
+    category: "Altered Mental Status",
+    chapter: 17
+  },
+  {
+    question: "A patient with suspected hemorrhagic stroke has a blood pressure of 210/118, bounding pulse, and deteriorating mental status. Which interpretation is most appropriate for BLS care?",
+    options: ["The hypertension may be part of compensation for brain perfusion and should be trended, not treated directly by EMTs", "The EMT should rapidly lower blood pressure with nitroglycerin", "The blood pressure rules out intracranial bleeding", "The pressure is irrelevant because pupils are always normal in hemorrhage"],
+    answer: "The hypertension may be part of compensation for brain perfusion and should be trended, not treated directly by EMTs",
+    explanation: "Very high pressure may occur with intracranial bleeding; EMTs monitor trends and support ABCs rather than attempting field BP reduction outside protocol.",
+    category: "Intracranial Pressure",
+    chapter: 17
+  },
+  {
+    question: "Which scenario most strongly suggests a structural or serious secondary cause of seizure rather than a routine known seizure disorder?",
+    options: ["First seizure in an older adult with sudden severe headache and hypertension", "A known epilepsy patient who missed one dose and is now fully alert", "A brief absence seizure identical to a documented lifelong pattern", "A postictal patient whose family reports identical monthly seizures"],
+    answer: "First seizure in an older adult with sudden severe headache and hypertension",
+    explanation: "New-onset seizure, severe headache, and hypertension raise concern for intracranial bleeding, tumor, infection, or another serious cause.",
+    category: "Seizure Causes",
+    chapter: 17
+  },
+  {
+    question: "Which communication strategy is best for a patient with suspected stroke who cannot speak but may understand?",
+    options: ["Explain care, look for nonverbal responses, and avoid careless remarks near the patient", "Assume unconscious patients cannot hear and discuss prognosis freely", "Stop communicating until speech returns", "Ask only family members because aphasia proves loss of comprehension"],
+    answer: "Explain care, look for nonverbal responses, and avoid careless remarks near the patient",
+    explanation: "A stroke patient may understand despite inability to speak, so respectful communication and reassurance remain important.",
+    category: "Neurologic Communication",
+    chapter: 17
+  },
+  {
+    question: "Which transport decision is best for a patient with positive FAST findings and a last-known-well time 45 minutes ago?",
+    options: ["Rapid transport to an appropriate stroke-capable facility with early notification", "Routine transport to the closest clinic because BLS cannot reverse stroke", "Delay transport for an extended neurologic exam and repeated stroke scales", "Transport only if symptoms persist for 24 hours"],
+    answer: "Rapid transport to an appropriate stroke-capable facility with early notification",
+    explanation: "Early recognition, last-known-well reporting, stroke alert, and rapid transport to a stroke-capable facility support time-sensitive care.",
+    category: "Management and Transport",
+    chapter: 17
+  },
+  {
+    question: "A febrile toddler has a generalized seizure that stops before arrival and is now drowsy but breathing adequately. Which statement is most appropriate?",
+    options: ["The child still requires transport because febrile seizures need evaluation and recurrence is possible", "No transport is needed if the seizure stopped before EMS arrived", "Treat it as status epilepticus even though the child is recovering", "Give oral fluids immediately to prevent another seizure"],
+    answer: "The child still requires transport because febrile seizures need evaluation and recurrence is possible",
+    explanation: "Febrile seizures are often tolerated but still require hospital evaluation and monitoring.",
+    category: "Special Populations",
+    chapter: 17
+  },
+  {
+    question: "Which patient assessment sequence best fits an advanced but BLS-appropriate neurologic emergency approach?",
+    options: ["Scene safety, ABCs and life threats, glucose when indicated, neurologic screen, last-known-well/history, trend vitals and GCS, rapid transport as indicated", "Detailed medication inventory, full secondary exam, then airway if the patient becomes cyanotic", "Stroke scale first, then decide whether breathing needs assessment", "Transport decision only after a definitive field diagnosis of ischemic versus hemorrhagic stroke"],
+    answer: "Scene safety, ABCs and life threats, glucose when indicated, neurologic screen, last-known-well/history, trend vitals and GCS, rapid transport as indicated",
+    explanation: "BLS care prioritizes safety and ABCs, identifies reversible mimics, captures time-critical history, trends neurologic status, and transports appropriately.",
+    category: "Patient Assessment",
+    chapter: 17
+  },
+  {
+    question: "Which statement best explains why an ischemic stroke patient may have salvageable brain tissue early in the event?",
+    options: ["Reduced but not absent perfusion may injure cells before they die, creating a time-sensitive treatment window", "Brain cells tolerate complete oxygen loss for many hours", "Hemorrhagic strokes always reverse before ischemic strokes", "TIA and ischemic stroke are identical because both involve permanent infarction"],
+    answer: "Reduced but not absent perfusion may injure cells before they die, creating a time-sensitive treatment window",
+    explanation: "Some ischemic brain tissue may be damaged but not dead early, which is why rapid recognition and transport matter.",
+    category: "Stroke Pathophysiology",
+    chapter: 17
+  },
+  {
+    question: "A patient has a simple partial seizure affecting the right hand that slowly spreads up the arm while the patient remains aware. Which documentation detail is most useful?",
+    options: ["The focal onset, spread pattern, preserved awareness, duration, and any change from prior events", "Only that the patient had a seizure, because type has no clinical value", "Only the patient's final blood pressure after the event", "That the event was syncope because awareness was preserved"],
+    answer: "The focal onset, spread pattern, preserved awareness, duration, and any change from prior events",
+    explanation: "Seizure pattern, duration, body areas involved, awareness, triggers, and changes from baseline help hospital evaluation.",
+    category: "Seizure Documentation",
+    chapter: 17
+  }
+];
+
+const chapter18Questions = [
+  { question: "A 79-year-old with severe diffuse abdominal pain lies motionless with knees flexed, has a rigid abdomen, tachycardia, and borderline hypotension. Which interpretation best guides EMT priorities?", options: ["Peritoneal irritation with possible acute abdomen and evolving shock", "Benign gastroenteritis because abdominal pain is diffuse", "Renal colic because motionless positioning is typical", "Psychogenic abdominal pain until fever is documented"], answer: "Peritoneal irritation with possible acute abdomen and evolving shock", explanation: "Guarding, rigidity, pain-relieving positioning, tachycardia, and falling pressure suggest peritonitis or acute abdomen with shock risk.", category: "Acute Abdomen", chapter: 18 },
+  { question: "Which statement best distinguishes referred abdominal pain from radiating pain during OPQRST?", options: ["Referred pain is felt at a distant site sharing nerve pathways; radiating pain spreads from the primary region", "Referred pain always means trauma; radiating pain always means infection", "Referred pain can only occur below the umbilicus; radiating pain only occurs above it", "Referred pain disappears with palpation; radiating pain worsens only with eating"], answer: "Referred pain is felt at a distant site sharing nerve pathways; radiating pain spreads from the primary region", explanation: "Referred pain may be perceived away from the diseased organ, while radiating pain travels from the original area.", category: "Pain Patterns", chapter: 18 },
+  { question: "A patient vomits bright red blood after repeated retching and becomes pale and diaphoretic. Which condition is most consistent with this history?", options: ["Mallory-Weiss tear with upper GI hemorrhage", "Diverticulitis with lower GI perforation", "Cystitis with urinary retention", "Renal calculi with referred shoulder pain"], answer: "Mallory-Weiss tear with upper GI hemorrhage", explanation: "Forceful retching can tear the esophagogastric junction and produce significant upper GI bleeding.", category: "Gastrointestinal Bleeding", chapter: 18 },
+  { question: "Which finding most strongly suggests upper GI bleeding rather than a non-bleeding abdominal complaint?", options: ["Coffee-ground emesis with melena and signs of hypoperfusion", "Clear urine with flank colic and restlessness", "Right lower quadrant pain that migrated from the periumbilical area", "Suprapubic burning and urinary frequency without blood loss signs"], answer: "Coffee-ground emesis with melena and signs of hypoperfusion", explanation: "Partially digested blood may appear as coffee-ground emesis or black tarry stool and can produce shock.", category: "Gastrointestinal Bleeding", chapter: 18 },
+  { question: "A flank-pain patient cannot find a comfortable position, has waves of severe pain radiating toward the groin, nausea, and hematuria. Which field impression is most defensible?", options: ["Renal colic from a ureteral stone", "Peritonitis from a perforated ulcer", "Esophageal varices from liver failure", "Appendicitis with classic rebound tenderness"], answer: "Renal colic from a ureteral stone", explanation: "Kidney stones often cause severe colicky flank pain that may radiate toward the groin with nausea and possible blood in the urine.", category: "Urologic Emergencies", chapter: 18 },
+  { question: "A chronic renal failure patient missed dialysis and is now weak, short of breath, hypertensive, and has an arm shunt. Which transport concern matters most?", options: ["Potential fluid/electrolyte derangement requiring prompt evaluation and protection of the dialysis access", "The shunt should be used by EMTs for medication access", "Missed dialysis is only a scheduling issue if the patient is awake", "Blood pressure should be taken over the shunt arm to trend perfusion"], answer: "Potential fluid/electrolyte derangement requiring prompt evaluation and protection of the dialysis access", explanation: "Missed dialysis can cause serious fluid, waste, and electrolyte problems; dialysis access should be protected.", category: "Renal Failure and Dialysis", chapter: 18 },
+  { question: "Why should an EMT avoid aggressive abdominal palpation in suspected acute abdomen?", options: ["It may worsen pain, guarding, vomiting, or patient distress without changing BLS treatment", "It reliably reverses ileus if done firmly", "It is required to prove appendicitis before transport", "It prevents peritonitis from spreading"], answer: "It may worsen pain, guarding, vomiting, or patient distress without changing BLS treatment", explanation: "Assessment should be gentle because definitive diagnosis is hospital-based and BLS care is supportive with transport.", category: "Patient Assessment", chapter: 18 },
+  { question: "A geriatric patient with vague weakness, mild abdominal discomfort, cool skin, and tachycardia denies severe pain. Which reasoning is safest?", options: ["Older adults may have muted abdominal findings despite serious disease", "Absence of severe pain rules out acute abdomen in geriatric patients", "Fever must be present before peritonitis can be suspected", "Abdominal complaints in older adults are usually non-urgent constipation"], answer: "Older adults may have muted abdominal findings despite serious disease", explanation: "Older patients may show atypical or blunted signs, so weak perfusion signs deserve high concern.", category: "Special Populations", chapter: 18 },
+  { question: "Which treatment plan best fits an unstable patient with suspected GI hemorrhage and repeated vomiting?", options: ["Protect the airway, position for vomiting, treat for shock, keep warm, and transport promptly", "Give oral fluids to correct presumed dehydration", "Delay transport until stool color can be confirmed", "Place supine regardless of active emesis to improve venous return"], answer: "Protect the airway, position for vomiting, treat for shock, keep warm, and transport promptly", explanation: "GI bleeding and vomiting threaten airway and perfusion; BLS care is airway protection, shock care, and rapid transport.", category: "Management and Transport", chapter: 18 },
+  { question: "Which abdominal presentation is most consistent with appendicitis progressing toward peritoneal irritation?", options: ["Dull periumbilical pain migrating to the right lower quadrant with anorexia and rebound tenderness", "Right upper quadrant pain referring to the right shoulder after fatty meals", "Epigastric tearing after forceful vomiting with hematemesis", "Flank pain radiating to the groin with urinary urgency"], answer: "Dull periumbilical pain migrating to the right lower quadrant with anorexia and rebound tenderness", explanation: "Appendicitis commonly begins vague near the umbilicus and later localizes to the right lower quadrant as irritation increases.", category: "Common Abdominal Emergencies", chapter: 18 },
+  { question: "A patient with suspected esophageal varices is vomiting bright red blood and has jaundice, ascites, and hypotension. Which underlying risk pattern best fits?", options: ["Portal hypertension from chronic liver disease with fragile esophageal vessels", "Renal calculi obstructing the ureter", "Bladder infection causing urinary retention", "Simple food poisoning from preformed bacterial toxin"], answer: "Portal hypertension from chronic liver disease with fragile esophageal vessels", explanation: "Esophageal varices are associated with liver disease and can cause massive upper GI bleeding with shock.", category: "Gastrointestinal Bleeding", chapter: 18 },
+  { question: "A patient with severe right upper quadrant pain after fatty meals reports pain into the right shoulder. Which condition and pain mechanism are most consistent?", options: ["Cholecystitis with referred pain", "Appendicitis with direct right lower quadrant pain", "Cystitis with suprapubic radiating pain", "Hemorrhoids with referred shoulder pain"], answer: "Cholecystitis with referred pain", explanation: "Gallbladder inflammation can cause right upper quadrant pain with referred pain to the right shoulder.", category: "Pain Patterns", chapter: 18 },
+  { question: "Which scene and exam combination should heighten infection-control concern during a GI/urologic call?", options: ["Projectile vomiting or fecal contamination with possible infectious diarrhea", "Flank pain without vomiting in a clean room", "Abdominal pain after a fatty meal with no body fluids", "Stable dialysis patient with an intact access site"], answer: "Projectile vomiting or fecal contamination with possible infectious diarrhea", explanation: "GI calls may involve vomitus, feces, urine, or infectious diarrhea; PPE and contamination control matter.", category: "Scene Safety", chapter: 18 },
+  { question: "Why can abdominal pain from myocardial infarction or pneumonia complicate EMT assessment?", options: ["Nonabdominal disease can present with abdominal symptoms, so ABCs and broad differentials remain important", "All abdominal pain originates in the digestive tract", "Urologic symptoms rule out cardiopulmonary illness", "A soft abdomen excludes life-threatening nonabdominal causes"], answer: "Nonabdominal disease can present with abdominal symptoms, so ABCs and broad differentials remain important", explanation: "Abdominal complaints can arise from other body systems, so EMTs must avoid anchoring on GI causes only.", category: "Differential Diagnosis", chapter: 18 },
+  { question: "A patient with abdominal pain is vomiting repeatedly and insists on sitting curled forward. Which positioning principle is best?", options: ["Allow a position of comfort if it protects the airway and does not worsen shock", "Force the patient flat to standardize abdominal assessment", "Place the patient prone to reduce vomiting risk", "Make the patient stand so pain location is easier to identify"], answer: "Allow a position of comfort if it protects the airway and does not worsen shock", explanation: "Patients with acute abdomen often choose positions that reduce peritoneal irritation; airway and perfusion still guide positioning.", category: "Management and Transport", chapter: 18 }
+];
+
+const chapter19Questions = [
+  { question: "A confused diabetic patient is diaphoretic, tremulous, combative, and suddenly worse after skipping lunch but taking usual insulin. Which pathophysiology best explains the presentation?", options: ["Excess circulating insulin relative to available glucose causing cerebral glucose deprivation", "Ketone accumulation from days of absent insulin", "Hyperosmolar dehydration with gradual onset over many days", "Sickle-shaped erythrocytes obstructing capillary flow"], answer: "Excess circulating insulin relative to available glucose causing cerebral glucose deprivation", explanation: "Rapid altered behavior after insulin without food strongly suggests symptomatic hypoglycemia.", category: "Hypoglycemia", chapter: 19 },
+  { question: "Which patient best fits DKA rather than isolated hypoglycemia?", options: ["Type 1 diabetic with infection, polyuria, dehydration, fruity breath, Kussmaul respirations, and glucose above 400 mg/dL", "Diabetic who took insulin and became suddenly sweaty before dinner", "Alert patient with normal glucose and isolated ankle pain", "Patient with abrupt hives, wheezing, and hypotension after peanuts"], answer: "Type 1 diabetic with infection, polyuria, dehydration, fruity breath, Kussmaul respirations, and glucose above 400 mg/dL", explanation: "DKA involves insulin deficiency, fat metabolism, ketone acidosis, dehydration, and often deep rapid respirations.", category: "DKA and Hyperglycemia", chapter: 19 },
+  { question: "An older type 2 diabetic has days of worsening thirst, dark concentrated urine, weakness, dehydration, and severe hyperglycemia without prominent ketone signs. Which complication is most likely?", options: ["Hyperosmolar hyperglycemic nonketotic syndrome", "Simple partial seizure", "Hemophilia A", "Acute anaphylaxis"], answer: "Hyperosmolar hyperglycemic nonketotic syndrome", explanation: "HHNS often develops gradually in type 2 diabetes with profound dehydration and high glucose rather than classic ketoacidosis.", category: "HHNS", chapter: 19 },
+  { question: "Which condition is a contraindication to oral glucose in a diabetic emergency?", options: ["Inability to swallow safely or protect the airway", "Known history of diabetes", "Blood glucose lower than normal", "Patient is conscious and follows commands"], answer: "Inability to swallow safely or protect the airway", explanation: "Oral glucose is only for patients who can swallow and maintain their airway; aspiration risk changes the plan.", category: "Oral Glucose", chapter: 19 },
+  { question: "A diabetic patient with chest discomfort, nausea, and weakness denies pain and looks only mildly ill. Which advanced assessment mindset is safest?", options: ["Consider ACS because diabetes can blunt or alter cardiac presentations", "Assume the complaint is glucose-related until the glucometer proves otherwise", "Rule out cardiac causes if the patient has no crushing pain", "Treat only after the patient becomes hypotensive"], answer: "Consider ACS because diabetes can blunt or alter cardiac presentations", explanation: "Diabetes is a major cardiovascular risk factor and may produce atypical ACS symptoms.", category: "Diabetes Complications", chapter: 19 },
+  { question: "A patient with sickle cell disease reports severe limb and abdominal pain with tachycardia and tachypnea but no trauma. What is the best field interpretation?", options: ["Possible vasoocclusive crisis with pain, tissue hypoxia, and need for supportive care", "Hemophilia A causing failure to form factor VIII", "HHNS because all severe pain in diabetes is hyperosmolar", "Psychogenic pain because sickle crises are painless"], answer: "Possible vasoocclusive crisis with pain, tissue hypoxia, and need for supportive care", explanation: "Sickled cells can obstruct blood flow, causing ischemic pain and organ complications.", category: "Sickle Cell Disease", chapter: 19 },
+  { question: "A hemophilia A patient has a swollen painful knee after minor trauma and appears pale with a weak pulse. Which concern is most appropriate?", options: ["Bleeding may be significant despite apparently minor mechanism", "Hemophilia primarily causes excessive clotting and pulmonary embolism", "Joint swelling rules out blood loss", "Factor VIII replacement is unnecessary if no external bleeding is seen"], answer: "Bleeding may be significant despite apparently minor mechanism", explanation: "Hemophilia impairs clotting, so minor trauma can cause serious internal bleeding into tissues or joints.", category: "Hemophilia", chapter: 19 },
+  { question: "Which finding cluster best supports thrombophilia-related DVT/PE risk rather than hemophilia?", options: ["Recent immobility or surgery with unilateral leg swelling and new dyspnea", "Prolonged bleeding after minor trauma with known factor VIII deficiency", "Vasoocclusive pain crisis with chronic anemia", "Rapid sweating and confusion after insulin use"], answer: "Recent immobility or surgery with unilateral leg swelling and new dyspnea", explanation: "Thrombophilia increases clot formation; DVT can embolize and cause respiratory or cardiac compromise.", category: "Thrombosis", chapter: 19 },
+  { question: "Which EMT care plan best fits an unresponsive diabetic patient with inadequate respirations?", options: ["Open airway, ventilate as needed, check glucose if possible, request ALS, and transport", "Force oral glucose between the teeth before airway care", "Withhold oxygen until glucose is known", "Assume intoxication and wait for police before assessment"], answer: "Open airway, ventilate as needed, check glucose if possible, request ALS, and transport", explanation: "Airway and ventilation come first; glucose assessment informs treatment but cannot precede life threats.", category: "Patient Assessment", chapter: 19 },
+  { question: "Why can hyperglycemia and hypoglycemia be dangerous to differentiate by appearance alone?", options: ["Both may produce altered mental status and mimic intoxication or neurologic dysfunction", "Only hyperglycemia changes mental status", "Only hypoglycemia occurs in type 1 diabetes", "Blood glucose is unrelated to brain function"], answer: "Both may produce altered mental status and mimic intoxication or neurologic dysfunction", explanation: "Field appearance can overlap, so EMTs should obtain blood glucose when allowed and avoid assumptions.", category: "Endocrine Assessment", chapter: 19 },
+  { question: "A type 1 diabetic with an insulin pump is confused and weak. Which assessment question is most important after ABCs and glucose check?", options: ["Whether the pump may have malfunctioned or dosing/routine changed", "Whether the patient owns a blood pressure cuff", "Whether the patient has ever had appendicitis", "Whether the patient prefers tablets to gel"], answer: "Whether the pump may have malfunctioned or dosing/routine changed", explanation: "Pump malfunction or dosing/routine changes can cause either hypo- or hyperglycemic emergencies.", category: "Diabetes Technology", chapter: 19 },
+  { question: "Which mechanism explains polyuria and polydipsia in uncontrolled hyperglycemia?", options: ["Excess filtered glucose pulls water into urine, causing dehydration and compensatory thirst", "Insulin directly blocks urine production", "Sickled cells rupture in the bladder", "Factor VIII deficiency causes renal shutdown"], answer: "Excess filtered glucose pulls water into urine, causing dehydration and compensatory thirst", explanation: "When glucose exceeds renal handling capacity, osmotic diuresis causes fluid loss and thirst.", category: "DKA and Hyperglycemia", chapter: 19 },
+  { question: "A sickle cell patient with severe chest pain, dyspnea, fever, and hypoxia should be treated with concern for:", options: ["A potentially life-threatening sickle complication such as acute chest syndrome", "A harmless pain pattern that never affects oxygenation", "Hemophilia-related joint bleeding only", "Hypoglycemia until oral glucose is given"], answer: "A potentially life-threatening sickle complication such as acute chest syndrome", explanation: "Sickle cell disease can cause painful crises and serious organ complications involving oxygenation and perfusion.", category: "Sickle Cell Disease", chapter: 19 },
+  { question: "Which bleeding history most changes risk assessment for a hemophilia patient after a seemingly minor fall?", options: ["Head impact or headache after trauma, even without external bleeding", "Mild thirst before the fall", "A normal appetite earlier in the day", "Pain that improves with rest"], answer: "Head impact or headache after trauma, even without external bleeding", explanation: "Clotting disorders raise concern for occult bleeding, including intracranial bleeding after head trauma.", category: "Hemophilia", chapter: 19 },
+  { question: "A patient on anticoagulants has melena, weakness, and a near-syncopal episode. Which chapter 19 concept is most relevant?", options: ["Clotting impairment or therapy can increase bleeding severity from another emergency", "Anticoagulants prevent all GI bleeding", "Melena indicates hypoglycemia until proven otherwise", "Near-syncope excludes blood loss"], answer: "Clotting impairment or therapy can increase bleeding severity from another emergency", explanation: "Hematologic or medication-related clotting problems can worsen bleeding and shock risk.", category: "Hematologic Assessment", chapter: 19 }
+];
+
+const chapter20Questions = [
+  { question: "Which presentation most clearly meets the field concern for anaphylaxis rather than a local allergic reaction?", options: ["Diffuse hives with wheezing, lip swelling, vomiting, and falling blood pressure", "Tender redness limited to the sting site with normal breathing", "Itching isolated to one forearm after plant contact", "Mild rhinorrhea after pollen exposure with normal perfusion"], answer: "Diffuse hives with wheezing, lip swelling, vomiting, and falling blood pressure", explanation: "Anaphylaxis is systemic and may involve skin, airway, breathing, GI symptoms, and shock.", category: "Anaphylaxis Recognition", chapter: 20 },
+  { question: "A patient with suspected anaphylaxis has hypotension but minimal wheezing. What is the safest interpretation?", options: ["Anaphylaxis may present primarily as circulatory collapse even without severe respiratory complaints", "Anaphylaxis is excluded unless audible wheezing is present", "Hypotension means epinephrine is contraindicated in all cases", "Skin signs must appear before perfusion can be affected"], answer: "Anaphylaxis may present primarily as circulatory collapse even without severe respiratory complaints", explanation: "Some anaphylaxis patients primarily show shock from vasodilation and capillary leakage.", category: "Anaphylaxis Recognition", chapter: 20 },
+  { question: "What is the most important therapeutic rationale for epinephrine in severe anaphylaxis?", options: ["It reverses bronchospasm, supports vascular tone, reduces hypotension, and improves perfusion", "It slowly blocks histamine over several hours", "It neutralizes venom at the sting site", "It prevents recurrence without need for transport"], answer: "It reverses bronchospasm, supports vascular tone, reduces hypotension, and improves perfusion", explanation: "Epinephrine has rapid sympathomimetic effects that address airway, breathing, and circulation threats.", category: "Epinephrine", chapter: 20 },
+  { question: "Which epinephrine dosing statement matches typical auto-injector teaching?", options: ["Adult auto-injector 0.3 mg IM; pediatric auto-injector 0.15 mg IM", "Adult auto-injector 3 mg IV; pediatric auto-injector 1.5 mg IV", "Adult auto-injector 0.03 mg PO; pediatric auto-injector 0.015 mg PO", "Adult and pediatric auto-injectors always contain the same dose"], answer: "Adult auto-injector 0.3 mg IM; pediatric auto-injector 0.15 mg IM", explanation: "Common auto-injectors deliver premeasured intramuscular epinephrine doses based on adult or pediatric size.", category: "Epinephrine", chapter: 20 },
+  { question: "A peanut-allergic patient improves after epinephrine and wants to refuse transport. Which explanation is most clinically accurate?", options: ["Epinephrine can wear off before the reaction fully resolves, so ED evaluation remains important", "Improvement proves the allergen has been eliminated", "Transport is unnecessary unless hives remain visible", "Antihistamines permanently replace epinephrine once symptoms improve"], answer: "Epinephrine can wear off before the reaction fully resolves, so ED evaluation remains important", explanation: "Recurrent or worsening symptoms can occur after initial improvement, so transport is still warranted.", category: "Management and Transport", chapter: 20 },
+  { question: "Which assessment finding suggests impending airway compromise in an allergic patient?", options: ["Progressive hoarseness, tongue swelling, stridor, or difficulty handling secretions", "Localized itch at the bite site with normal voice", "Anxiety alone with clear lungs and no swelling", "Normal speech after a resolved rash"], answer: "Progressive hoarseness, tongue swelling, stridor, or difficulty handling secretions", explanation: "Upper airway edema can progress quickly and must be identified early.", category: "Airway and Breathing", chapter: 20 },
+  { question: "Which trigger category is most often associated with delayed recognition because symptoms may appear after ingestion and skin signs may be absent?", options: ["Food allergy", "Direct heat exposure", "Simple mechanical abrasion", "Blunt trauma"], answer: "Food allergy", explanation: "Food-triggered anaphylaxis may be delayed and may not initially include obvious hives.", category: "Allergen Triggers", chapter: 20 },
+  { question: "A geriatric patient with CAD has prescribed epinephrine and clear anaphylaxis. Which statement best reflects risk-benefit thinking?", options: ["Cardiac history raises concern, but life-threatening anaphylaxis may still warrant epinephrine per protocol or medical control", "Cardiac history absolutely forbids epinephrine even in airway swelling and shock", "Epinephrine should be replaced with oral antihistamine in severe anaphylaxis", "Only oxygen is allowed if the patient is older than 65"], answer: "Cardiac history raises concern, but life-threatening anaphylaxis may still warrant epinephrine per protocol or medical control", explanation: "Epinephrine can stress the heart, but the danger of untreated anaphylaxis can outweigh that risk.", category: "Special Populations", chapter: 20 },
+  { question: "Which reassessment finding after epinephrine should most strongly prompt immediate escalation and possible second-dose consideration per protocol?", options: ["Persistent or worsening hypotension, wheezing, airway swelling, or declining mental status", "Residual scattered hives with normal breathing and perfusion", "Mild tremor and increased heart rate after the injection", "Patient reports feeling embarrassed about the auto-injector"], answer: "Persistent or worsening hypotension, wheezing, airway swelling, or declining mental status", explanation: "Failure to improve or clinical deterioration after epinephrine requires urgent reassessment and protocol-guided escalation.", category: "Reassessment", chapter: 20 },
+  { question: "Why are skin findings alone unreliable for judging severity in anaphylaxis?", options: ["Serious airway or circulatory compromise may occur with subtle, hidden, or absent rash", "Hives always indicate stable perfusion", "Skin color is more accurate than blood pressure", "Angioedema rules out shock"], answer: "Serious airway or circulatory compromise may occur with subtle, hidden, or absent rash", explanation: "Anaphylaxis severity is judged by airway, breathing, circulation, GI, and progression, not rash alone.", category: "Patient Assessment", chapter: 20 },
+  { question: "A patient has diffuse hives and nausea but no wheezing, stridor, hypotension, or airway swelling. Which approach is most defensible?", options: ["Monitor closely, obtain allergy history, prepare for rapid worsening, and transport per protocol", "Ignore the reaction because respiratory distress is absent", "Administer epinephrine automatically to every rash", "Delay transport until a second organ system fails"], answer: "Monitor closely, obtain allergy history, prepare for rapid worsening, and transport per protocol", explanation: "Mild systemic findings can worsen; severity and protocol guide epinephrine and transport decisions.", category: "Patient Assessment", chapter: 20 },
+  { question: "Which history question is most likely to identify a hidden trigger when anaphylaxis begins at a restaurant?", options: ["What foods, medications, or exposures occurred before symptoms started, including possible cross-contact allergens?", "What was the patient's highest blood pressure last year?", "Did the patient ever have appendicitis?", "How many hours did the patient sleep last night?"], answer: "What foods, medications, or exposures occurred before symptoms started, including possible cross-contact allergens?", explanation: "Food and medication exposures may be hidden, delayed, or unknown to the patient.", category: "Allergen Triggers", chapter: 20 },
+  { question: "Which sequence best fits BLS management of severe anaphylaxis?", options: ["Assess ABCs, give oxygen/ventilatory support as needed, assist epinephrine per protocol, treat shock, transport, and reassess frequently", "Give antihistamine first, delay oxygen, and transport only if rash persists", "Obtain full medication list before assessing airway", "Wait for hypotension before preparing epinephrine when airway swelling is present"], answer: "Assess ABCs, give oxygen/ventilatory support as needed, assist epinephrine per protocol, treat shock, transport, and reassess frequently", explanation: "Severe allergic reactions require immediate ABC support, epinephrine when indicated, shock care, and rapid transport.", category: "Management and Transport", chapter: 20 },
+  { question: "Which physiologic change explains hypotension in anaphylaxis?", options: ["Vasodilation and increased capillary permeability causing relative volume loss", "Renal calculi obstructing urine flow", "Complete absence of insulin production", "Excessive clotting in the femoral veins only"], answer: "Vasodilation and increased capillary permeability causing relative volume loss", explanation: "Chemical mediators cause leaky vessels and vasodilation, reducing effective circulating volume and perfusion.", category: "Pathophysiology", chapter: 20 },
+  { question: "Which documentation detail is most important after assisting with an epinephrine auto-injector?", options: ["Dose/device used, time given, route/site, response, and reassessment findings", "Only the patient's allergy history", "Only whether hives disappeared", "The brand of alcohol wipe used"], answer: "Dose/device used, time given, route/site, response, and reassessment findings", explanation: "Receiving clinicians need epinephrine timing, dose, route/site, response, and ongoing trends.", category: "Documentation", chapter: 20 }
+];
+
+const chapter21Questions = [
+  { question: "Which scene detail should most strongly stop entry until specialized help confirms safety?", options: ["Unresponsive patient in an enclosed garage with a running vehicle", "Empty prescription bottle on a kitchen counter with open windows", "Patient awake after eating suspicious leftovers", "Alcohol containers near an alert patient with normal respirations"], answer: "Unresponsive patient in an enclosed garage with a running vehicle", explanation: "Inhaled toxins such as carbon monoxide can endanger rescuers; scene safety and ventilation/HazMat support come first.", category: "Scene Safety", chapter: 21 },
+  { question: "Why can pulse oximetry be misleading in carbon monoxide poisoning?", options: ["It may read falsely reassuring because it cannot reliably distinguish oxyhemoglobin from carboxyhemoglobin", "It always reads zero in carbon monoxide exposure", "It directly measures tissue cyanide levels", "It is accurate only in sedative overdoses"], answer: "It may read falsely reassuring because it cannot reliably distinguish oxyhemoglobin from carboxyhemoglobin", explanation: "Carbon monoxide binds hemoglobin and can make standard SpO2 appear better than the patient's oxygen delivery really is.", category: "Inhaled Poisons", chapter: 21 },
+  { question: "Which patient is a poor candidate for activated charcoal?", options: ["Unresponsive patient with unknown overdose and inability to protect the airway", "Alert adult who swallowed appropriate charcoal-binding tablets within the protocol window", "Cooperative patient for whom medical control orders charcoal", "Patient who can swallow and has no caustic ingestion history"], answer: "Unresponsive patient with unknown overdose and inability to protect the airway", explanation: "Activated charcoal is contraindicated when airway protection is poor and is ineffective or unsafe for several toxin types.", category: "Activated Charcoal", chapter: 21 },
+  { question: "Which toxidrome is most consistent with opioid overdose requiring ventilatory support and naloxone consideration?", options: ["CNS depression with slow inadequate respirations and possible pinpoint pupils", "Hypertension, dilated pupils, agitation, and diaphoresis", "Hot dry flushed skin with delirium and urinary retention", "Profuse secretions, bronchorrhea, diarrhea, and bradycardia"], answer: "CNS depression with slow inadequate respirations and possible pinpoint pupils", explanation: "Opioids depress the CNS and respiratory drive; ventilation remains the priority while naloxone is prepared or administered.", category: "Opioids and Naloxone", chapter: 21 },
+  { question: "After naloxone, an opioid-overdose patient wakes up but remains exposed to unknown pills and alcohol. Which statement is safest?", options: ["Improvement does not rule out recurrent respiratory depression or co-ingestion risk", "Naloxone neutralizes all sedatives and alcohol permanently", "Transport can be cancelled if the patient is angry but awake", "Activated charcoal is automatically indicated after naloxone"], answer: "Improvement does not rule out recurrent respiratory depression or co-ingestion risk", explanation: "Naloxone may wear off and does not treat non-opioid co-ingestions; reassessment and transport remain important.", category: "Opioids and Naloxone", chapter: 21 },
+  { question: "A pesticide-exposed patient has heavy salivation, tearing, urination, diarrhea, bronchorrhea, bradycardia, and seizures. Which poisoning pattern is most likely?", options: ["Cholinergic organophosphate or nerve-agent exposure", "Anticholinergic overdose", "Sympathomimetic stimulant intoxication", "Simple ethanol intoxication"], answer: "Cholinergic organophosphate or nerve-agent exposure", explanation: "SLUDGE/SLUDGEM findings point toward cholinergic toxicity and require responder protection and decontamination awareness.", category: "Cholinergic Agents", chapter: 21 },
+  { question: "Which presentation best matches anticholinergic toxicity rather than cholinergic toxicity?", options: ["Hot, dry, flushed, delirious patient with dilated pupils", "Drooling patient with bronchorrhea and diarrhea", "Patient with pinpoint pupils and shallow respirations", "Patient with sudden vomiting after spoiled food"], answer: "Hot, dry, flushed, delirious patient with dilated pupils", explanation: "Anticholinergic poisoning blocks parasympathetic effects and classically produces hot, dry, red, blind, and delirious findings.", category: "Anticholinergic Agents", chapter: 21 },
+  { question: "What is the best general BLS principle for surface-contact chemical poisoning?", options: ["Avoid self-contamination and remove or dilute the substance with appropriate decontamination", "Immediately administer activated charcoal to bind the skin toxin", "Delay decontamination until the exact chemical is named", "Transport without removing contaminated clothing"], answer: "Avoid self-contamination and remove or dilute the substance with appropriate decontamination", explanation: "Absorbed/contact poisons require responder protection and removal or dilution of the contaminant when appropriate.", category: "Absorbed Poisons", chapter: 21 },
+  { question: "A patient has sudden nausea, vomiting, and diarrhea after eating leftovers, while other family members who ate the same food are ill. Which history is most useful?", options: ["Food source, time eaten, symptom onset, others exposed, and container/leftovers if available", "Only whether the patient has ever used opioids", "Only the patient's last normal blood pressure", "Whether the patient has an epinephrine auto-injector"], answer: "Food source, time eaten, symptom onset, others exposed, and container/leftovers if available", explanation: "Food poisoning assessment depends on exposure timing, shared illness, food details, and transport of useful containers or labels when appropriate.", category: "Food Poisoning", chapter: 21 },
+  { question: "A stimulant-intoxicated patient is hypertensive, tachycardic, paranoid, diaphoretic, and hyperthermic. Which management concern is most important?", options: ["Excited physiology can rapidly become life-threatening; prioritize safety, cooling as appropriate, ABCs, and rapid transport", "The presentation is harmless if the patient denies chest pain", "Activated charcoal reverses stimulant effects in the field", "Naloxone is the antidote for sympathomimetic toxicity"], answer: "Excited physiology can rapidly become life-threatening; prioritize safety, cooling as appropriate, ABCs, and rapid transport", explanation: "Sympathomimetics stress the cardiovascular system and can cause hyperthermia, agitation, and sudden deterioration.", category: "Stimulants", chapter: 21 },
+  { question: "Which information should be gathered for poison control after immediate life threats are managed?", options: ["Substance, amount, route, time, patient weight, symptoms, and any treatments already given", "Only the patient's insurance status", "Only whether the patient vomited", "Only the name of the transporting ambulance"], answer: "Substance, amount, route, time, patient weight, symptoms, and any treatments already given", explanation: "Poison center guidance depends on exposure details, dose, timing, route, patient size, symptoms, and prior interventions.", category: "Poison Control", chapter: 21 },
+  { question: "A child ingests a household alkali cleaner and is crying with oral burns. Which treatment is inappropriate?", options: ["Activated charcoal by mouth", "Airway assessment", "Poison center or medical control contact", "Prompt transport"], answer: "Activated charcoal by mouth", explanation: "Activated charcoal is not effective for caustic alkali ingestion and may worsen airway or vomiting risk.", category: "Activated Charcoal", chapter: 21 },
+  { question: "Which exposure route is hardest to dilute or remove once symptoms occur?", options: ["Injected poison", "Surface contact powder before absorption", "Inhaled gas after removal to fresh air", "Contaminated clothing before decontamination"], answer: "Injected poison", explanation: "Injected toxins are rapidly introduced into tissue or bloodstream and generally cannot be removed in the field.", category: "Injected Poisons", chapter: 21 },
+  { question: "A sedative-hypnotic overdose patient is deeply drowsy with respiratory depression. Which BLS priority is most important?", options: ["Airway positioning, suction as needed, assisted ventilation, and transport", "Naloxone as definitive treatment for every sedative", "Activated charcoal regardless of mental status", "Walking the patient to keep them awake"], answer: "Airway positioning, suction as needed, assisted ventilation, and transport", explanation: "Sedative-hypnotics depress the CNS and breathing; supportive airway and ventilation care is central.", category: "CNS Depressants", chapter: 21 },
+  { question: "Why is alcohol intoxication a risky field diagnosis when the patient has altered mental status?", options: ["Alcohol can coexist with trauma, hypoglycemia, overdose, or medical illness, so a full assessment is still required", "Alcohol intoxication protects against hypoglycemia", "Alcohol rules out head injury if no bleeding is visible", "Alcohol intoxication is never associated with respiratory depression"], answer: "Alcohol can coexist with trauma, hypoglycemia, overdose, or medical illness, so a full assessment is still required", explanation: "Labeling AMS as alcohol alone can miss serious and treatable causes.", category: "Alcohol", chapter: 21 }
+];
+
+const chapter22Questions = [
+  { question: "A bizarre, agitated patient is diaphoretic and tachycardic with no psychiatric history. Which first principle prevents a dangerous diagnostic error?", options: ["Assume medical, traumatic, toxicologic, and psychiatric causes remain possible until assessed", "Classify all bizarre behavior as functional psychiatric disease", "Wait for law enforcement before checking glucose or oxygenation", "Avoid asking about medical history because it may escalate behavior"], answer: "Assume medical, traumatic, toxicologic, and psychiatric causes remain possible until assessed", explanation: "Behavioral change can result from hypoxia, hypoglycemia, head injury, intoxication, infection, or psychiatric illness.", category: "Medical Mimics", chapter: 22 },
+  { question: "Which distinction between organic brain syndrome and functional disorder is most clinically useful in EMS?", options: ["Organic causes arise from physical brain/body dysfunction; functional disorders may impair behavior without obvious structural abnormality", "Organic causes are always psychiatric; functional causes are always hypoglycemia", "Functional disorders never require transport", "Organic causes can be ruled out if the patient speaks clearly"], answer: "Organic causes arise from physical brain/body dysfunction; functional disorders may impair behavior without obvious structural abnormality", explanation: "EMS must search for treatable organic causes while still managing psychiatric distress safely.", category: "Pathophysiology", chapter: 22 },
+  { question: "Which scene approach is safest for a potentially violent psychiatric emergency?", options: ["Stage until law enforcement secures the scene, maintain exits, and limit unnecessary personnel", "Enter quickly to prove calm authority before police arrive", "Block the patient's exit with the stretcher", "Separate from your partner so the patient feels less surrounded"], answer: "Stage until law enforcement secures the scene, maintain exits, and limit unnecessary personnel", explanation: "Provider safety comes first; violence risk requires staging, law enforcement, escape routes, and scene control.", category: "Scene Safety", chapter: 22 },
+  { question: "A patient is hyperactive, irrational, hallucinating, sweating, hypertensive, tachycardic, and physically exhausted after stimulant use and prolonged struggle. Which syndrome is most concerning?", options: ["Agitated delirium with risk of sudden death and severe physiologic stress", "Simple anxiety attack requiring no medical evaluation", "Resolved schizophrenia with no transport need", "Mild depression without safety risk"], answer: "Agitated delirium with risk of sudden death and severe physiologic stress", explanation: "Agitated delirium can involve hyperthermia, acidosis, stimulant effects, restraint stress, and sudden deterioration.", category: "Agitated Delirium", chapter: 22 },
+  { question: "Before physical restraint, which action is preferred if the scene is safe enough to attempt it?", options: ["Verbal de-escalation with honest, calm communication and adequate backup nearby", "Immediate prone restraint to prevent movement", "Threatening arrest to force compliance", "Removing all family members even if one is calming the patient"], answer: "Verbal de-escalation with honest, calm communication and adequate backup nearby", explanation: "De-escalation is safest when feasible and may prevent restraint-related complications.", category: "De-escalation", chapter: 22 },
+  { question: "Which restraint practice is unsafe and should be avoided?", options: ["Transporting the patient prone, hog-tied, or with chest movement restricted", "Using the least restrictive effective restraint per protocol", "Continuous airway and circulation reassessment after restraint", "Documenting the reason and method of restraint"], answer: "Transporting the patient prone, hog-tied, or with chest movement restricted", explanation: "Prone or hog-tied positioning can cause positional asphyxia and prevents adequate monitoring.", category: "Restraint Safety", chapter: 22 },
+  { question: "A patient jokes, 'Maybe everyone would be better off if I disappeared,' after describing severe depression. Which response is most appropriate?", options: ["Ask directly about suicidal thoughts and plan while ensuring safety", "Avoid the topic because direct questions can create suicidal ideas", "Dismiss it if the family says the patient is dramatic", "Leave the patient alone briefly to reduce embarrassment"], answer: "Ask directly about suicidal thoughts and plan while ensuring safety", explanation: "Vague suicidal statements must be taken seriously; asking directly does not plant the idea.", category: "Suicide Risk", chapter: 22 },
+  { question: "Which patient has especially high suicide concern even if currently calm?", options: ["Severely depressed patient with recent loss, alcohol use, and access to lethal means", "Patient with a mild phobia who denies self-harm and has stable support", "Patient upset about wait time but joking with family", "Patient with chronic anxiety who requests voluntary evaluation"], answer: "Severely depressed patient with recent loss, alcohol use, and access to lethal means", explanation: "Depression, substance use, recent loss, and access to means increase suicide risk.", category: "Suicide Risk", chapter: 22 },
+  { question: "Which statement about consent and refusal in psychiatric emergencies is safest?", options: ["A patient impaired by mental illness, intoxication, or medical cause may lack capacity to refuse; consult law enforcement, medical control, or protocol", "All conscious adults can refuse regardless of danger or capacity", "EMTs alone can always force transport for any psychiatric complaint", "Refusal is valid if the patient can state their name"], answer: "A patient impaired by mental illness, intoxication, or medical cause may lack capacity to refuse; consult law enforcement, medical control, or protocol", explanation: "Capacity can be compromised; psychiatric refusals require careful legal and medical handling.", category: "Medical Legal", chapter: 22 },
+  { question: "A veteran with flashbacks becomes defensive when approached abruptly. Which approach best reflects PTSD-aware care?", options: ["Use calm communication, avoid unnecessary restraint, reduce perceived threat, and preserve safety", "Crowd the patient to prevent escape", "Assume the patient is intentionally manipulative", "Use physical restraint early because verbal support is ineffective in PTSD"], answer: "Use calm communication, avoid unnecessary restraint, reduce perceived threat, and preserve safety", explanation: "PTSD can involve hyperarousal, flashbacks, avoidance, and threat perception; calm respectful care reduces escalation.", category: "PTSD", chapter: 22 },
+  { question: "Which physical finding during restraint requires immediate reassessment and possible repositioning?", options: ["Increasing respiratory distress, cyanosis, vomiting, or reduced ability to move the chest", "Calmer verbal tone after reassurance", "Patient asking where they are being transported", "Normal distal circulation in all restrained limbs"], answer: "Increasing respiratory distress, cyanosis, vomiting, or reduced ability to move the chest", explanation: "Restrained patients are at risk for airway compromise, aspiration, and positional asphyxia; breathing must be continuously monitored.", category: "Restraint Safety", chapter: 22 },
+  { question: "Which documentation is most defensible after restraining a violent patient?", options: ["Behavior creating danger, de-escalation attempted, restraint type, position, monitoring, reassessments, and law enforcement involvement", "Only that the patient was difficult", "Only the final destination", "No documentation because restraint was performed by police"], answer: "Behavior creating danger, de-escalation attempted, restraint type, position, monitoring, reassessments, and law enforcement involvement", explanation: "Restraint has medical and legal risk, so objective behavior, rationale, method, and monitoring must be documented.", category: "Documentation", chapter: 22 },
+  { question: "A patient with apparent psychosis also has fever, tachycardia, urinary complaints, and new confusion. Which differential should not be missed?", options: ["Organic illness such as infection causing altered behavior", "Primary schizophrenia only because hallucinations are present", "PTSD only because confusion is new", "Malingering because fever is unrelated to behavior"], answer: "Organic illness such as infection causing altered behavior", explanation: "Infection and other medical causes can produce delirium and behavioral changes, especially in vulnerable patients.", category: "Medical Mimics", chapter: 22 },
+  { question: "Which statement best describes EMT authority when a dangerous patient resists transport?", options: ["EMTs should follow protocol and involve law enforcement or medical control because legal authority varies", "EMTs can always arrest the patient", "Family consent always overrides patient refusal", "A psychiatric diagnosis alone automatically removes all rights"], answer: "EMTs should follow protocol and involve law enforcement or medical control because legal authority varies", explanation: "Mental incapacity, danger, and refusal require careful use of protocol, medical direction, and law enforcement support.", category: "Medical Legal", chapter: 22 },
+  { question: "A hostile patient begins pacing, clenching fists, and scanning the room while family argues nearby. Which action best reduces escalation?", options: ["Remove unnecessary people, keep a safe exit path, use calm concise speech, and request adequate help", "Stand close to show confidence", "Argue point-by-point until the patient agrees", "Turn your back while preparing equipment"], answer: "Remove unnecessary people, keep a safe exit path, use calm concise speech, and request adequate help", explanation: "Violence prediction and prevention depend on scene control, distance, exits, calm communication, and backup.", category: "Violence Risk", chapter: 22 }
 ];
 
 const medicalTerminologyQuestions = [
@@ -3502,6 +4073,23 @@ const flashcards = [
   { chapter: 10, term: "Pediatric narrowest airway point", definition: "Cricoid ring in children younger than 8 years." },
   { chapter: 10, term: "Belly breathers", definition: "Infants and children rely strongly on diaphragm movement." },
 
+  // Chapter 14
+  { chapter: 14, term: "NOI", definition: "Nature of illness; the general medical problem causing the EMS call." },
+  { chapter: 14, term: "Infectious Disease", definition: "Disease caused by harmful organisms invading and multiplying in the body." },
+  { chapter: 14, term: "Communicable Disease", definition: "Disease capable of spreading from person to person or species to species." },
+  { chapter: 14, term: "Epidemic", definition: "Disease outbreak affecting more people than expected in a specific area or population." },
+  { chapter: 14, term: "Pandemic", definition: "An epidemic that spreads globally across multiple countries or continents." },
+  { chapter: 14, term: "Respiratory Emergency", definition: "Emergency involving breathing, ventilation, or oxygenation problems." },
+  { chapter: 14, term: "Cardiovascular Emergency", definition: "Emergency involving the heart or blood vessels affecting perfusion." },
+  { chapter: 14, term: "Neurologic Emergency", definition: "Emergency affecting the brain, spinal cord, or nervous system." },
+  { chapter: 14, term: "Gastrointestinal Emergency", definition: "Emergency involving the digestive system." },
+  { chapter: 14, term: "Urologic Emergency", definition: "Emergency involving kidneys, bladder, or urinary system." },
+  { chapter: 14, term: "Endocrine Emergency", definition: "Emergency involving hormones or gland dysfunction, commonly diabetes." },
+  { chapter: 14, term: "Hematologic Emergency", definition: "Emergency involving blood disorders." },
+  { chapter: 14, term: "Immunologic Emergency", definition: "Emergency involving allergic or immune system reactions." },
+  { chapter: 14, term: "Standard Precautions", definition: "Infection-control practices used with all patients to reduce exposure risk." },
+  { chapter: 14, term: "Destination Selection", definition: "Choosing the most appropriate receiving facility based on patient needs." },
+
   // Chapter 15
   { chapter: 15, term: "Dyspnea", definition: "Difficulty breathing or shortness of breath." },
   { chapter: 15, term: "Respiratory distress", definition: "Patient is breathing but working hard to maintain oxygenation and ventilation." },
@@ -3562,13 +4150,106 @@ const flashcards = [
   { chapter: 15, term: "Rescue inhaler", definition: "Fast-acting medication for acute breathing symptoms, such as albuterol." },
   { chapter: 15, term: "Maintenance inhaler", definition: "Preventive medication that does not immediately relieve an acute breathing emergency." },
   { chapter: 15, term: "Respiratory patient reassessment", definition: "Reassess unstable patients and patients after medication at least every 5 minutes." },
-  { chapter: 15, term: "When to use a BVM", definition: "When breathing is inadequate or respiratory failure develops." }
+  { chapter: 15, term: "When to use a BVM", definition: "When breathing is inadequate or respiratory failure develops." },
+
+  // Chapter 17
+  { chapter: 17, term: "CVA", definition: "Cerebrovascular accident; interruption of blood flow to part of the brain causing loss of brain function." },
+  { chapter: 17, term: "Ischemic Stroke", definition: "Stroke caused by blockage of blood flow through a cerebral artery." },
+  { chapter: 17, term: "Hemorrhagic Stroke", definition: "Stroke caused by bleeding inside the brain or surrounding spaces." },
+  { chapter: 17, term: "TIA", definition: "Transient ischemic attack; stroke-like symptoms that resolve, often warning of future stroke risk." },
+  { chapter: 17, term: "Aphasia", definition: "Impaired ability to produce or understand language." },
+  { chapter: 17, term: "Dysarthria", definition: "Slurred or poorly articulated speech from motor control problems." },
+  { chapter: 17, term: "Ataxia", definition: "Poor coordination or loss of balance." },
+  { chapter: 17, term: "Neglect", definition: "Lack of awareness of one side of the body or visual field, often with right hemisphere stroke." },
+  { chapter: 17, term: "FAST", definition: "Stroke mnemonic: facial droop, arm drift, speech, and time last known well." },
+  { chapter: 17, term: "LAG Scale", definition: "Stroke severity screen assessing level of consciousness, arm drift, and gaze." },
+  { chapter: 17, term: "Postictal State", definition: "Recovery period after a seizure with confusion, fatigue, altered responsiveness, or temporary deficits." },
+  { chapter: 17, term: "Status Epilepticus", definition: "Prolonged or repeated seizure activity without return to normal consciousness." },
+  { chapter: 17, term: "Aura", definition: "Warning sensation before some seizures, such as visual changes, unusual smells, or hallucinations." },
+  { chapter: 17, term: "Simple Partial Seizure", definition: "Focal seizure without loss of consciousness." },
+  { chapter: 17, term: "Complex Partial Seizure", definition: "Focal seizure with altered awareness or abnormal interaction with the environment." },
+  { chapter: 17, term: "Absence Seizure", definition: "Brief seizure with staring and lapse of awareness, usually without major motor activity." },
+  { chapter: 17, term: "Syncope", definition: "Fainting; temporary loss of consciousness often with rapid recovery and no prolonged postictal state." },
+  { chapter: 17, term: "AEIOU-TIPS", definition: "Memory tool for altered mental status causes including alcohol, epilepsy/endocrine/electrolytes, insulin, overdose, uremia, trauma/temperature, infection, poisoning/psychogenic, and shock/stroke/seizure/syncope." },
+  { chapter: 17, term: "Last Known Well", definition: "Most recent time the patient was known to be neurologically normal; critical for stroke treatment decisions." },
+  { chapter: 17, term: "Stroke Alert", definition: "Early hospital notification for a suspected stroke patient so the receiving team can prepare time-sensitive care." },
+
+  // Chapter 18
+  { chapter: 18, term: "Acute Abdomen", definition: "Sudden abdominal pain that may indicate serious disease requiring prompt assessment and transport." },
+  { chapter: 18, term: "Peritonitis", definition: "Inflammation or irritation of the peritoneum, often causing severe abdominal pain, guarding, and possible shock." },
+  { chapter: 18, term: "Referred Pain", definition: "Pain felt away from the diseased organ because of shared nerve pathways." },
+  { chapter: 18, term: "Hematemesis", definition: "Vomiting blood, which may appear bright red or coffee-ground-like." },
+  { chapter: 18, term: "Melena", definition: "Black, tarry stool caused by digested blood in the gastrointestinal tract." },
+  { chapter: 18, term: "Mallory-Weiss Tear", definition: "Tear near the junction of the esophagus and stomach after forceful vomiting or retching." },
+  { chapter: 18, term: "Renal Calculi", definition: "Kidney stones that may cause severe flank pain radiating toward the groin." },
+  { chapter: 18, term: "Dialysis Shunt", definition: "Surgically created vascular access for hemodialysis that should be protected during EMS care." },
+  { chapter: 18, term: "Cystitis", definition: "Inflammation or infection of the urinary bladder, often causing painful or frequent urination." },
+  { chapter: 18, term: "Rebound Tenderness", definition: "Pain that worsens when pressure is released, suggesting peritoneal irritation." },
+
+  // Chapter 19
+  { chapter: 19, term: "Diabetes Mellitus", definition: "Disorder of glucose metabolism involving inadequate insulin effect or production." },
+  { chapter: 19, term: "Hypoglycemia", definition: "Abnormally low blood glucose that can rapidly impair brain function and mental status." },
+  { chapter: 19, term: "Hyperglycemia", definition: "Abnormally high blood glucose that may lead to dehydration, DKA, or HHNS." },
+  { chapter: 19, term: "DKA", definition: "Diabetic ketoacidosis; insulin deficiency causing hyperglycemia, dehydration, ketones, and acidosis." },
+  { chapter: 19, term: "Kussmaul Respirations", definition: "Deep, rapid breathing pattern associated with metabolic acidosis such as DKA." },
+  { chapter: 19, term: "HHNS", definition: "Hyperosmolar hyperglycemic nonketotic syndrome; severe dehydration and hyperglycemia usually in type 2 diabetes." },
+  { chapter: 19, term: "Oral Glucose", definition: "Sugar paste given by mouth to a hypoglycemic patient who can swallow and protect the airway." },
+  { chapter: 19, term: "Sickle Cell Crisis", definition: "Painful vasoocclusive episode caused by sickled red blood cells obstructing blood flow." },
+  { chapter: 19, term: "Hemophilia A", definition: "Clotting disorder involving factor VIII deficiency and increased bleeding risk." },
+  { chapter: 19, term: "Thrombophilia", definition: "Tendency to form abnormal blood clots that may cause DVT or pulmonary embolism." },
+
+  // Chapter 20
+  { chapter: 20, term: "Allergic Reaction", definition: "Exaggerated immune response to an allergen." },
+  { chapter: 20, term: "Anaphylaxis", definition: "Life-threatening systemic allergic reaction involving airway, breathing, circulation, skin, or GI systems." },
+  { chapter: 20, term: "Urticaria", definition: "Hives; raised itchy skin lesions often associated with allergic reactions." },
+  { chapter: 20, term: "Angioedema", definition: "Localized swelling, often involving lips, tongue, face, or airway tissues." },
+  { chapter: 20, term: "Histamine", definition: "Chemical mediator that contributes to vasodilation, capillary leakage, itching, and swelling." },
+  { chapter: 20, term: "Bronchospasm", definition: "Narrowing of lower airways that can cause wheezing and respiratory distress." },
+  { chapter: 20, term: "Epinephrine", definition: "First-line medication for severe anaphylaxis that supports perfusion and relieves bronchospasm." },
+  { chapter: 20, term: "Auto-Injector", definition: "Predosed device that delivers intramuscular epinephrine, usually into the lateral thigh." },
+  { chapter: 20, term: "Systemic Reaction", definition: "Reaction affecting body systems beyond the local exposure site." },
+  { chapter: 20, term: "Biphasic Concern", definition: "Risk that anaphylaxis symptoms can recur after initial improvement, requiring transport and monitoring." },
+
+  // Chapter 21
+  { chapter: 21, term: "Toxicology", definition: "Study of poisons, toxins, and their effects on the body." },
+  { chapter: 21, term: "Inhaled Poison", definition: "Toxin entering through the respiratory tract, such as carbon monoxide or chlorine." },
+  { chapter: 21, term: "Absorbed Poison", definition: "Toxin entering through skin or mucous membrane contact." },
+  { chapter: 21, term: "Ingested Poison", definition: "Toxin swallowed into the gastrointestinal tract." },
+  { chapter: 21, term: "Injected Poison", definition: "Toxin introduced through a bite, sting, needle, or injection route." },
+  { chapter: 21, term: "Activated Charcoal", definition: "Medication that binds some swallowed toxins when indicated by protocol or medical control." },
+  { chapter: 21, term: "Naloxone", definition: "Opioid antagonist used to reverse opioid-related respiratory depression." },
+  { chapter: 21, term: "Cholinergic Toxicity", definition: "Poisoning pattern with excessive secretions, bronchorrhea, bradycardia, GI effects, and possible seizures." },
+  { chapter: 21, term: "Anticholinergic Toxicity", definition: "Poisoning pattern often causing hot dry skin, flushed appearance, delirium, and dilated pupils." },
+  { chapter: 21, term: "Sympathomimetic", definition: "Stimulant-like toxin causing adrenergic findings such as tachycardia, hypertension, agitation, and diaphoresis." },
+
+  // Chapter 22
+  { chapter: 22, term: "Behavioral Crisis", definition: "Behavior that interferes with activities of daily living or creates danger to self or others." },
+  { chapter: 22, term: "Organic Brain Syndrome", definition: "Behavioral or mental status change caused by physical brain or body dysfunction." },
+  { chapter: 22, term: "Functional Disorder", definition: "Mental or behavioral disorder without an obvious structural cause identified in the field." },
+  { chapter: 22, term: "Psychosis", definition: "Loss of contact with reality, possibly involving hallucinations or delusions." },
+  { chapter: 22, term: "Agitated Delirium", definition: "Serious condition with agitation, disorientation, hallucinations or delusions, and physiologic stress." },
+  { chapter: 22, term: "Verbal De-escalation", definition: "Calm communication used to reduce tension and avoid physical restraint when possible." },
+  { chapter: 22, term: "Positional Asphyxia", definition: "Impaired breathing from body position or restraint limiting chest movement or airway patency." },
+  { chapter: 22, term: "Least Restrictive Restraint", definition: "Using the minimum restraint needed for safety according to protocol." },
+  { chapter: 22, term: "Suicidal Ideation", definition: "Thoughts or statements about self-harm that require direct assessment and safety action." },
+  { chapter: 22, term: "PTSD", definition: "Posttraumatic stress disorder; persistent distress after trauma with intrusive memories, avoidance, hyperarousal, or flashbacks." }
 ];
 
 questionBank.push(
   ...chapter12Questions.map((item) => ({
     chapter: 12,
     topic: "Shock",
+    question: item.question,
+    answers: item.options,
+    correct: item.options.indexOf(item.answer),
+    explanation: item.explanation
+  }))
+);
+
+questionBank.push(
+  ...chapter14Questions.map((item) => ({
+    chapter: item.chapter,
+    topic: item.category,
     question: item.question,
     answers: item.options,
     correct: item.options.indexOf(item.answer),
@@ -3587,6 +4268,72 @@ questionBank.push(
   }))
 );
 
+questionBank.push(
+  ...chapter17Questions.map((item) => ({
+    chapter: item.chapter,
+    topic: item.category,
+    question: item.question,
+    answers: item.options,
+    correct: item.options.indexOf(item.answer),
+    explanation: item.explanation
+  }))
+);
+
+questionBank.push(
+  ...chapter18Questions.map((item) => ({
+    chapter: item.chapter,
+    topic: item.category,
+    question: item.question,
+    answers: item.options,
+    correct: item.options.indexOf(item.answer),
+    explanation: item.explanation
+  }))
+);
+
+questionBank.push(
+  ...chapter19Questions.map((item) => ({
+    chapter: item.chapter,
+    topic: item.category,
+    question: item.question,
+    answers: item.options,
+    correct: item.options.indexOf(item.answer),
+    explanation: item.explanation
+  }))
+);
+
+questionBank.push(
+  ...chapter20Questions.map((item) => ({
+    chapter: item.chapter,
+    topic: item.category,
+    question: item.question,
+    answers: item.options,
+    correct: item.options.indexOf(item.answer),
+    explanation: item.explanation
+  }))
+);
+
+questionBank.push(
+  ...chapter21Questions.map((item) => ({
+    chapter: item.chapter,
+    topic: item.category,
+    question: item.question,
+    answers: item.options,
+    correct: item.options.indexOf(item.answer),
+    explanation: item.explanation
+  }))
+);
+
+questionBank.push(
+  ...chapter22Questions.map((item) => ({
+    chapter: item.chapter,
+    topic: item.category,
+    question: item.question,
+    answers: item.options,
+    correct: item.options.indexOf(item.answer),
+    explanation: item.explanation
+  }))
+);
+
 export {
   chapters,
   questionBank,
@@ -3595,5 +4342,12 @@ export {
   medicalTerminologyFlashcards,
   situationalScenarios,
   chapter12Questions,
-  chapter16Questions
+  chapter14Questions,
+  chapter16Questions,
+  chapter17Questions,
+  chapter18Questions,
+  chapter19Questions,
+  chapter20Questions,
+  chapter21Questions,
+  chapter22Questions
 };

@@ -1,4 +1,4 @@
-import { db } from "./firebase-config.js?v=6";
+import { db } from "./firebase-config.js?v=9";
 import {
   chapters,
   questionBank,
@@ -6,7 +6,7 @@ import {
   medicalTerminologyQuestions,
   medicalTerminologyFlashcards,
   situationalScenarios
-} from "./data/questions.js?v=6";
+} from "./data/questions.js?v=9";
 import {
   collection,
   doc,
